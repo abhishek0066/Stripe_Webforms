@@ -1,0 +1,257 @@
+﻿html, body {
+    max-width: 100%;
+    overflow-x: hidden !important;
+    /*background-color: #fefab5;*/
+    
+    background-image: url('../../Images/TrialBack.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+
+/*referee profile name styling*/
+.googleFont {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 60px;
+    /*color: #223144;*/
+    color: black;
+    font-weight: 600;
+}
+
+/*navigation main body content height*/
+.navigationTabsBodyPanelStyling {
+    min-height: 500px;
+    overflow: hidden;
+}
+
+
+
+
+
+/*Pending referee approval main panel header styling*/
+.refereeApprovalMainPanelHeadingStyling {
+    text-align: center !important;
+    color: white;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+    font-size: 20px;
+}
+
+/*approval and review panels styling*/
+.approvalReviewNavigationPanelStyling {
+    text-align: center !important;
+    color: white;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+    font-size: 20px;
+}
+
+.transparent {
+opacity: 0.95;
+} 
+
+.navPanelStyling {
+    text-align: center !important;
+    color: white;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+}
+
+/*Pending approval table styling*/
+.pendingApprovalCountStyling {
+    text-align: center !important;
+    color: black;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+}
+
+/*School Pictures Styling*/
+.schoolImagesStyling {
+    width: 140px;
+    height: 140px;
+}
+
+/*game information images panel Styling*/
+.gameinformationImagesStyling {
+    width: 140px;
+    height: 140px;
+}
+
+/*referee images panel Styling*/
+.pendingRefereePictureStyling {
+    width: 140px;
+    height: 140px;
+}
+
+
+.text-center {
+    text-align: center !important;
+    color: black;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+    border-color: black;
+}
+
+/*Approve and reject button styling*/
+#approveReferee1Button,
+#approveReferee2Button,
+#approveReferee3Button,
+#RejectReferee1Button,
+#RejectReferee2Button,
+#RejectReferee3Button {
+    width: 150px;
+    position: center;
+}
+
+/*Modal Styling*/
+#myModal1 {
+    top: 1%;
+    left: 35%;
+    outline: none;
+    width: 70%;
+   
+}
+
+    #myModal1 .modal-dialog {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-left:12px;
+        
+    }
+
+.modal-body {
+    max-height: 1100px;
+    
+}
+
+/*modal title styling*/
+.modalTitleStyling {
+    text-align: center !important;
+    color: black;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+    font-size: 15px;
+    
+}
+
+/*Modal Body styling*/
+.modalBodyStyle {
+    background-color:white;
+    background: white;
+    margin-top:10px; 
+    margin-bottom: 20px;
+   
+    
+    
+}
+
+/*modal heading panel styling*/
+.modal-header-info {
+    color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #428bca;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+
+}
+
+
+/*Stars Styling for Referee Information*/
+.rating-star {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    line-height: 1;
+    font-size: 35px;
+    width: 3.75em;
+    color: #fb0;
+}
+
+.rating-item {
+    float: right;
+    height: .75em;
+    width: .75em;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+    .rating-item:before {
+        content: "\2606";
+        display: block;
+        line-height: .75em;
+        text-indent: -.035em;
+    }
+
+
+
+    .rating-item.result {
+        overflow: hidden;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        width: 0;
+    }
+
+
+        .rating-item.result:before {
+            content: "\2605 \2605 \2605 \2605 \2605";
+            letter-spacing: -.08em;
+        }
+
+
+/*To Delete*/
+.mainPanelStyling {
+    text-align: center !important;
+    color: white;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+    font-size: 20px;
+}
+
+.modalcareerandcontactheadingstyling {
+    text-align: center !important;
+    color: black;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+    font-size: 14px;
+    
+
+}
+
+.modalcareerandcontactbodystyling {
+    text-align: center !important;
+    color: black;
+    font-weight: 800;
+    font-size:12px;
+    font-family: 'Arial', serif;
+    border-color: black;
+    
+}
+
+#myModal1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+#myModal1::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+#myModal1::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+}

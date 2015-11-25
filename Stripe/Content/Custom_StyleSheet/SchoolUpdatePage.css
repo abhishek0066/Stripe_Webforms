@@ -1,0 +1,98 @@
+﻿html, body { 
+    max-width: 100%;
+    overflow-x: hidden !important;
+
+    background-color: #fefab5;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/*referee profile name styling*/
+.googleFont{
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 60px;
+    /*color: #223144;*/
+    color: black;
+    font-weight: 600;
+}
+
+/*referee profile picture styling*/
+.userProfilePicture {
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+/*school director and school personal information table content center*/
+.text-center {
+    
+    color: black;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+    border-color: black;
+    font-size: 20px;
+}
+
+
+/*school director contact information styling*/
+.directorcontactinformationmainpanel{
+    text-align: center !important;
+    color: white;
+    font-weight: 800;
+    font-family: Calibri, serif;
+    border-color: black;
+    font-size: 35px;
+}
+
+.directorcontactinformationpicturepanel{
+    text-align: center !important;
+    color: saddlebrown;
+    font-weight: 800;
+    font-family: Calibri, serif;
+    border-color: black;
+    font-size: 30px;
+}
+
+table.class_selector tr{
+   height: 53px;
+}
+
+.schoolInformationpicturepanel {
+ text-align: center !important;
+    color: saddlebrown;
+    font-weight: 800;
+    font-family: Calibri, serif;
+    border-color: black;
+    font-size: 30px;
+}
+
+.tab-pane{
+  height:120px;
+  overflow-y:scroll;
+  width:100%;
+}
+
+/*Input Fields Height Styling*/
+#schoolStreetAddressFieldID,
+#schoolCityFieldID,
+#schoolStateFieldID,
+#schoolZipFieldID,
+#directorFirstNameFieldID,
+#directorLastNameFieldID,
+#directorEmailFieldID,
+#directorPhoneNumberFieldID,
+#directorStreetAddressFieldID,
+#directorCityFieldID,
+#directorStateFieldID,
+#directorPasswordFieldID,
+#directorConfirmPasswordFieldID,
+#schoolNameFieldID,
+#directorZipFieldID
+
+
+{
+height:40px;
+}
+
