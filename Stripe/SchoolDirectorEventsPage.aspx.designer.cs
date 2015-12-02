@@ -22,13 +22,13 @@ namespace Stripe {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// refereeProfileHomeID control.
+        /// schoolDirectorProfileHomeID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink refereeProfileHomeID;
+        protected global::System.Web.UI.WebControls.HyperLink schoolDirectorProfileHomeID;
         
         /// <summary>
         /// eventsID control.

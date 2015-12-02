@@ -14,7 +14,7 @@ namespace Stripe
     public partial class SchoolApprovalAndRatingPage : System.Web.UI.Page
     {
         int schoolDirectorUserProfileId;
-        string cookieUsername = "";
+        string schoolDirectorUserId = "";
         int sportEventID;
         int refereeProfileID;
         int refereeSportType_TypeID;
@@ -67,15 +67,13 @@ namespace Stripe
         int refereeRatingAwayTeamScore;
         int refereeRatingTotalStarsGiven;
         protected void Page_Load(object sender, EventArgs e)
-       {
-            if (Request.Cookies["user"] != null)
+        {
+            if (Session["user"] != null)
             {
-
-                HttpCookie getUserCookie = Request.Cookies["user"];
-                cookieUsername = getUserCookie.Values["schoolDirectorUsername"];
+                schoolDirectorUserId = Session["user"].ToString();
                 try
                 {
-                    schoolDirectorUserProfileId = Int32.Parse(cookieUsername);
+                    schoolDirectorUserProfileId = Int32.Parse(schoolDirectorUserId);
                 }
                 catch (Exception ex)
                 {
@@ -85,31 +83,34 @@ namespace Stripe
 
             else
             {
-
-                Response.Redirect("About.aspx");
+                Response.Redirect("LoginForm.aspx", false);
             }
 
-            if (!Page.IsPostBack) {
+            if (!Page.IsPostBack)
+            {
                 string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
-                using (SqlConnection connection = new SqlConnection(connectionString)) {
-                    using (SqlCommand command = connection.CreateCommand()) { 
-                        command.CommandText= 
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText =
                             "SELECT TOP 1 "
-                            +"Sport_Event_event_ID, "
-                            +"User_Profile_Referee_Profile_ID, "
-                            +"Sport_Type_Referees_sptTypeRef_ID "
-                            +"FROM "
-                            +"Referee_Event_History "
-                            +"WHERE "
-                            +"User_Profile_School_Director_Profile_ID =@User_Profile_School_Director_Profile_ID "
-                            +"AND Referee_Status_refStatus_ID='P'";
+                            + "Sport_Event_event_ID, "
+                            + "User_Profile_Referee_Profile_ID, "
+                            + "Sport_Type_Referees_sptTypeRef_ID "
+                            + "FROM "
+                            + "Referee_Event_History "
+                            + "WHERE "
+                            + "User_Profile_School_Director_Profile_ID =@User_Profile_School_Director_Profile_ID "
+                            + "AND Referee_Status_refStatus_ID='P'";
 
                         command.Parameters.AddWithValue("@User_Profile_School_Director_Profile_ID", schoolDirectorUserProfileId);
                         try
                         {
                             connection.Open();
                             SqlDataReader reader = command.ExecuteReader();
-                            if (reader.HasRows) {
+                            if (reader.HasRows)
+                            {
                                 while (reader.Read())
                                 {
                                     sportEventID = reader.GetInt32(0);
@@ -122,32 +123,33 @@ namespace Stripe
                         {
                             Console.WriteLine(ex.Message);
                         }
-                            
+
                     }
                 }
 
-                if (sportEventID>0)
+                if (sportEventID > 0)
                 {
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         using (SqlCommand command = connection.CreateCommand())
                         {
-                            command.CommandText= 
+                            command.CommandText =
                                 "SELECT "
-                                +" event_Date, "
-                                +" event_Time, "
-                                +" event_School_Field_Name, "
-                                +" School_Home_sch_ID, "
-                                +" School_Away_sch_ID, "
-                                +" Sport_Name_spt_Sport_Name_ID "
-                                +" FROM Sport_Event WHERE event_ID=@event_ID";
+                                + " event_Date, "
+                                + " event_Time, "
+                                + " event_School_Field_Name, "
+                                + " School_Home_sch_ID, "
+                                + " School_Away_sch_ID, "
+                                + " Sport_Name_spt_Sport_Name_ID "
+                                + " FROM Sport_Event WHERE event_ID=@event_ID";
                             command.Parameters.AddWithValue("@event_ID", sportEventID);
 
                             try
                             {
                                 connection.Open();
                                 SqlDataReader reader = command.ExecuteReader();
-                                if (reader.HasRows) {
+                                if (reader.HasRows)
+                                {
 
                                     while (reader.Read())
                                     {
@@ -171,53 +173,55 @@ namespace Stripe
                     {
                         using (SqlCommand command = connection.CreateCommand())
                         {
-                             command.CommandText =
-                                 "SELECT "
-                                 + "U.userProfile_First_Name, "
-                                 + "U.userProfile_Last_Name, "
-                                 + "U.userProfile_Email, "
-                                 + "U.userProfile_Phone, "
-                                 + "U.userProfile_Street, "
-                                 + "U.userProfile_City, "
-                                 + "U.userProfile_State, "
-                                 + "U.userProfile_Zip, "
-                                 + "U.userProfile_Photo, "
-                                 + "R.Sport_Name_spt_Sport_Name_ID, "
-                                 + "R.User_Profile_Referee_Total_Ratings, "
-                                 + "R.User_Profile_Referee_Games_Officiated  "
-                                 + "FROM USER_PROFILE U JOIN USER_PROFILE_REFEREE R "
-                                 + "ON U.userProfile_ID= R.User_Profile_userProfile_ID "
-                                 + "WHERE U.userProfile_ID=@userProfile_ID";
+                            command.CommandText =
+                                "SELECT "
+                                + "U.userProfile_First_Name, "
+                                + "U.userProfile_Last_Name, "
+                                + "U.userProfile_Email, "
+                                + "U.userProfile_Phone, "
+                                + "U.userProfile_Street, "
+                                + "U.userProfile_City, "
+                                + "U.userProfile_State, "
+                                + "U.userProfile_Zip, "
+                                + "U.userProfile_Photo, "
+                                + "R.Sport_Name_spt_Sport_Name_ID, "
+                                + "R.User_Profile_Referee_Total_Ratings, "
+                                + "R.User_Profile_Referee_Games_Officiated  "
+                                + "FROM USER_PROFILE U JOIN USER_PROFILE_REFEREE R "
+                                + "ON U.userProfile_ID= R.User_Profile_userProfile_ID "
+                                + "WHERE U.userProfile_ID=@userProfile_ID";
 
-                             command.Parameters.AddWithValue("@userProfile_ID", refereeProfileID);
+                            command.Parameters.AddWithValue("@userProfile_ID", refereeProfileID);
 
-                             try
-                             {
-                                 connection.Open();
-                                 SqlDataReader reader = command.ExecuteReader();
-                                 if (reader.HasRows) {
+                            try
+                            {
+                                connection.Open();
+                                SqlDataReader reader = command.ExecuteReader();
+                                if (reader.HasRows)
+                                {
 
-                                     while (reader.Read()) {
-                                         refereeFirstName = reader.GetString(0);
-                                         refereeLastName = reader.GetString(1);
-                                         refereeEmail = reader.GetString(2);
-                                         refereePhone = reader.GetString(3);
-                                         refereeStreet = reader.GetString(4);
-                                         refereeCity = reader.GetString(5);
-                                         refereeState= reader.GetString(6);
-                                         refereeZip = reader.GetString(7);
-                                         refereePhoto = reader.GetString(8);
-                                         refereeSportNameID = reader.GetInt32(9);
-                                         refereeTotalRatings = reader.GetInt32(10);
-                                         refereeTotalGamesOfficiated = reader.GetInt32(11);
-                                        
-                                     }
-                                 }
-                             }
-                             catch (Exception ex)
-                             {
-                                 Console.WriteLine(ex.Message);
-                             }
+                                    while (reader.Read())
+                                    {
+                                        refereeFirstName = reader.GetString(0);
+                                        refereeLastName = reader.GetString(1);
+                                        refereeEmail = reader.GetString(2);
+                                        refereePhone = reader.GetString(3);
+                                        refereeStreet = reader.GetString(4);
+                                        refereeCity = reader.GetString(5);
+                                        refereeState = reader.GetString(6);
+                                        refereeZip = reader.GetString(7);
+                                        refereePhoto = reader.GetString(8);
+                                        refereeSportNameID = reader.GetInt32(9);
+                                        refereeTotalRatings = reader.GetInt32(10);
+                                        refereeTotalGamesOfficiated = reader.GetInt32(11);
+
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
                         }
                     }
 
@@ -231,16 +235,17 @@ namespace Stripe
                                 " sch_Name, sch_Logo FROM School WHERE sch_ID=@sch_ID";
                             command.Parameters.AddWithValue("@sch_ID", sportEventAwaySchoolID);
                             try
-                            { 
+                            {
                                 connection.Open();
-                            SqlDataReader reader = command.ExecuteReader();
-                            if (reader.HasRows) {
-                                while (reader.Read())
+                                SqlDataReader reader = command.ExecuteReader();
+                                if (reader.HasRows)
                                 {
-                                    sportEventAwayTeamName = reader.GetString(0);
-                                    sportEventAwayTeamLogo = reader.GetString(1);
+                                    while (reader.Read())
+                                    {
+                                        sportEventAwayTeamName = reader.GetString(0);
+                                        sportEventAwayTeamLogo = reader.GetString(1);
+                                    }
                                 }
-                                }   
                             }
 
                             catch (Exception ex)
@@ -297,8 +302,8 @@ namespace Stripe
                                 {
                                     while (reader.Read())
                                     {
-                                         refereeSportName = reader.GetString(0);
-                                        
+                                        refereeSportName = reader.GetString(0);
+
                                     }
                                 }
                             }
@@ -330,7 +335,7 @@ namespace Stripe
                                     while (reader.Read())
                                     {
                                         refereeSportType_TypeName = reader.GetString(0);
-                                       
+
                                     }
                                 }
                             }
@@ -349,8 +354,8 @@ namespace Stripe
                             command.CommandText =
                                 "SELECT TOP 1 count(Sport_Event_event_ID) " +
                                 "FROM Referee_Event_History "
-                                +"WHERE User_Profile_School_Director_Profile_ID=@User_Profile_School_Director_Profile_ID "
-                                +"AND Referee_Status_refStatus_ID='P'; ";
+                                + "WHERE User_Profile_School_Director_Profile_ID=@User_Profile_School_Director_Profile_ID "
+                                + "AND Referee_Status_refStatus_ID='P'; ";
 
 
                             command.Parameters.AddWithValue("@User_Profile_School_Director_Profile_ID", schoolDirectorUserProfileId);
@@ -375,8 +380,10 @@ namespace Stripe
                         }
                     }
 
-                    using (SqlConnection connection = new SqlConnection(connectionString)) {
-                        using (SqlCommand command = connection.CreateCommand()) {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
                             command.CommandText =
                                 "SELECT TOP 1 "
                                 + " R.refEventHistory_Total_Stars_Rating, "
@@ -393,12 +400,14 @@ namespace Stripe
                                 + " WHERE R.User_Profile_School_Director_Profile_ID=@refereeRatingUser_Profile_School_Director_ID AND Referee_Status_refStatus_ID='A' "
                                 + " AND refEventHistory_Total_Stars_Rating=0 AND S.event_Date<=SYSDATETIME() ";
                             command.Parameters.AddWithValue("@refereeRatingUser_Profile_School_Director_ID", schoolDirectorUserProfileId);
-                            try {
+                            try
+                            {
                                 connection.Open();
                                 SqlDataReader reader = command.ExecuteReader();
                                 if (reader.HasRows)
                                 {
-                                    while (reader.Read()) {
+                                    while (reader.Read())
+                                    {
                                         refereeRatingTotalStars = reader.GetInt32(0);
                                         refereeRatingSportEventID = reader.GetInt32(1);
                                         refereeRatingRefereeProfileID = reader.GetInt32(2);
@@ -409,7 +418,7 @@ namespace Stripe
                                         refereeRatingAwaySchoolID = reader.GetInt32(7);
                                         refereeRatingHomeSchoolID = reader.GetInt32(8);
                                         refereeRatingSportTypeID = reader.GetInt32(9);
-                                        
+
                                     }
                                 }
 
@@ -437,12 +446,12 @@ namespace Stripe
                                 {
                                     while (reader.Read())
                                     {
-                                        refereeRatingEventAwayTeamName = reader.GetString(0); 
+                                        refereeRatingEventAwayTeamName = reader.GetString(0);
                                         refereeRatingEventAwayTeamLogo = reader.GetString(1);
                                     }
                                 }
-                                
-                                
+
+
 
                             }
                             catch (Exception ex)
@@ -468,8 +477,8 @@ namespace Stripe
                                 {
                                     while (reader.Read())
                                     {
-                                        
-                                        refereeRatingEventHomeTeamName = reader.GetString(0); 
+
+                                        refereeRatingEventHomeTeamName = reader.GetString(0);
                                         refereeRatingEventHomeTeamLogo = reader.GetString(1);
                                     }
                                 }
@@ -503,7 +512,7 @@ namespace Stripe
                                 {
                                     while (reader.Read())
                                     {
-                                        
+
                                         refereeRatingSportType_TypeName = reader.GetString(0);
 
                                     }
@@ -537,7 +546,7 @@ namespace Stripe
                                 {
                                     while (reader.Read())
                                     {
-                                        
+
                                         refereeRatingSportName = reader.GetString(0);
 
                                     }
@@ -569,7 +578,7 @@ namespace Stripe
                                 {
                                     while (reader.Read())
                                     {
-                                        
+
                                         refereeRatingRefereeFirstName = reader.GetString(0);
                                         refereeRatingRefereeLastName = reader.GetString(1);
                                     }
@@ -609,8 +618,8 @@ namespace Stripe
                     refereeStreetAddressLabelID.Text = refereeStreet;
                     refereeCityLabelID.Text = refereeCity;
                     refereeStateLabelID.Text = refereeZip;
-                    referee1GameTypeID.Text = "Sport Name "+ refereeSportName;
-                    
+                    referee1GameTypeID.Text = "Sport Name " + refereeSportName;
+
                     referee1FullNameID.Text = refereeFirstName + " " + refereeLastName;
                     if (refereeTotalGamesOfficiated != 0 && refereeTotalRatings > 0)
                     { refereeCurrentRatingFraction = refereeTotalRatings / refereeTotalGamesOfficiated; }
@@ -621,9 +630,9 @@ namespace Stripe
                     }
 
                     refereeCurrentRatingPercentage = (refereeCurrentRatingFraction * 100) / 5;
-                   
+
                     referee1StarRatingID.Style.Add("width", refereeCurrentRatingPercentage + "%");
-                   
+
                 }
                 else
                 {
@@ -635,9 +644,10 @@ namespace Stripe
             }
         }
 
-        protected void approveReferee_Click(object sender, EventArgs e) {
+        protected void approveReferee_Click(object sender, EventArgs e)
+        {
             char refereeApprovalStatus = 'A';
-            
+
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -762,7 +772,7 @@ namespace Stripe
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText ="UPDATE Referee_Event_History " +
+                    command.CommandText = "UPDATE Referee_Event_History " +
                         " SET Referee_Status_refStatus_ID= @Referee_Status_refStatus_ID " +
                         " WHERE Sport_Event_event_ID=@Sport_Event_event_ID AND User_Profile_Referee_Profile_ID=@User_Profile_Referee_Profile_ID";
                     command.Parameters.AddWithValue("@Referee_Status_refStatus_ID", refereeApprovalStatus);
@@ -778,7 +788,7 @@ namespace Stripe
                         Response.Write("<p>Error code " + exception.Number
                                        + ": " + exception.Message + "</p>");
                     }
-                    
+
                 }
             }
 
@@ -1117,7 +1127,7 @@ namespace Stripe
         protected void rejectReferee_Click(object sender, EventArgs e)
         {
             char refereeRejectionStatus = 'D';
-            
+
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -1212,7 +1222,7 @@ namespace Stripe
                     }
                 }
             }
-            
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
@@ -1603,10 +1613,10 @@ namespace Stripe
                         {
                             while (reader.Read())
                             {
-                               
+
                                 refereeRatingSportEventID = reader.GetInt32(1);
                                 refereeRatingRefereeProfileID = reader.GetInt32(2);
-                                
+
 
                             }
                         }
@@ -1625,10 +1635,10 @@ namespace Stripe
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandText = "UPDATE Referee_Event_History " +
-                         " SET refEventHistory_Total_Stars_Rating= @refEventHistory_Total_Stars_Rating_Provided " 
+                         " SET refEventHistory_Total_Stars_Rating= @refEventHistory_Total_Stars_Rating_Provided "
                          + " WHERE Sport_Event_event_ID=@Sport_Event_event_ID_Given AND User_Profile_Referee_Profile_ID=@User_Profile_Referee_Profile_ID_Given AND User_Profile_School_Director_Profile_ID=@User_Profile_School_Director_Profile_ID_Given";
 
-                    
+
                     command.Parameters.AddWithValue("@refEventHistory_Total_Stars_Rating_Provided", refereeRatingTotalStarsGiven);
                     command.Parameters.AddWithValue("@Sport_Event_event_ID_Given", refereeRatingSportEventID);
                     command.Parameters.AddWithValue("@User_Profile_Referee_Profile_ID_Given", refereeRatingRefereeProfileID);
@@ -1646,7 +1656,7 @@ namespace Stripe
                 }
             }
 
-            char eventCompletionGiven= 'y';
+            char eventCompletionGiven = 'y';
             refereeRatingHomeTeamScore = Int32.Parse(homeTeamScoreTextFieldID.Text);
             refereeRatingAwayTeamScore = Int32.Parse(awayTeamScoreTextFieldID.Text);
 
@@ -1660,7 +1670,7 @@ namespace Stripe
 
                     command.Parameters.AddWithValue("@event_Completion_Given", eventCompletionGiven);
                     command.Parameters.AddWithValue("@Sport_Event_event_ID_Given", refereeRatingSportEventID);
-                    
+
                     command.Parameters.AddWithValue("@event_Home_Team_Score_Given", refereeRatingHomeTeamScore);
                     command.Parameters.AddWithValue("@event_Away_Team_Score_Given", refereeRatingAwayTeamScore);
 
@@ -1895,8 +1905,11 @@ namespace Stripe
 
         }
 
-
-
-
+        protected void logoutout_Click(object sender, EventArgs e)
+        {
+            Session["loginid"] = null;
+            Session["user"] = null;
+            Response.Redirect("LoginForm.aspx", false);
+        }
     }
 }

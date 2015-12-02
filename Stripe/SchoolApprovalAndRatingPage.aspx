@@ -59,27 +59,20 @@
                                     <ul class="nav nav-tabs nav-justified">
                                         <%--<ul class="nav navbar-nav">--%>
                                         <li>
-                                            <asp:HyperLink NavigateUrl="RefereeHomePage.aspx" ID="refereeProfileHomeID" runat="server"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><b> Home</b><span class="sr-only"></span></asp:HyperLink>
+                                            <asp:HyperLink NavigateUrl="SchooHomePage.aspx" ID="schoolDirectorProfileHomeID" runat="server"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><b> Home</b><span class="sr-only"></span></asp:HyperLink>
 
                                         </li>
                                         <li>
-                                            <asp:HyperLink NavigateUrl=" " ID="eventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
-
-
+                                            <asp:HyperLink NavigateUrl="SchoolDirectorEventsPage.aspx" ID="eventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
                                         </li>
                                         <li>
                                             <asp:HyperLink NavigateUrl=" " ID="searchID" runat="server"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><b> Search</b><span class="sr-only"></span></asp:HyperLink>
-
-
                                         </li>
                                         <li class="active">
-                                            <asp:HyperLink NavigateUrl=" " ID="approveAndRatingID" runat="server"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><b> Approval & Rating</b><span class="sr-only"></span></asp:HyperLink>
-
-
+                                            <asp:HyperLink NavigateUrl="SchoolApprovalAndRatingPage" ID="approveAndRatingID" runat="server"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><b> Approval & Rating</b><span class="sr-only"></span></asp:HyperLink>
                                         </li>
                                         <li>
-                                            <asp:LinkButton ID="logoutout" runat="server"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><b> Logout</b><span class="sr-only"></span></asp:LinkButton>
-
+                                            <asp:LinkButton ID="logoutout" runat="server" OnClick="logoutout_Click"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><b> Logout</b><span class="sr-only"></span></asp:LinkButton>
                                         </li>
                                     </ul>
 

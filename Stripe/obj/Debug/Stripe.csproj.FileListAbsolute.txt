@@ -29,3 +29,38 @@ C:\Users\abhishek0066\documents\visual studio 2013\Projects\Stripe\Stripe\bin\Mi
 C:\Users\abhishek0066\documents\visual studio 2013\Projects\Stripe\Stripe\obj\Debug\Stripe.csprojResolveAssemblyReference.cache
 C:\Users\abhishek0066\documents\visual studio 2013\Projects\Stripe\Stripe\obj\Debug\Stripe.dll
 C:\Users\abhishek0066\documents\visual studio 2013\Projects\Stripe\Stripe\obj\Debug\Stripe.pdb
+\\psf\Home\Documents\Stripe_Webforms\Stripe\obj\Debug\Stripe.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\Stripe_Webforms\Stripe\obj\Debug\Stripe.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\Stripe.dll.config
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\Stripe.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\Stripe.pdb
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\AspNet.ScriptManager.jQuery.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.AspNet.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.Core.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.OAuth.Consumer.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.OAuth.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.OpenId.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\EntityFramework.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\EntityFramework.SqlServer.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\Microsoft.AspNet.FriendlyUrls.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\Microsoft.Web.Infrastructure.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\System.Net.Http.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\System.Net.Http.WebRequest.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\System.Web.Providers.dll
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\System.Net.Http.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\System.Net.Http.WebRequest.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\EntityFramework.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\EntityFramework.SqlServer.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\System.Web.Providers.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.Core.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.OAuth.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.OAuth.Consumer.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.OpenId.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\DotNetOpenAuth.AspNet.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\bin\Microsoft.AspNet.FriendlyUrls.xml
+\\psf\Home\Documents\Stripe_Webforms\Stripe\obj\Debug\Stripe.pdb

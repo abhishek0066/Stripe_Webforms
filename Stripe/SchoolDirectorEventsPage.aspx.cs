@@ -29,11 +29,9 @@ namespace Stripe
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["user"] != null)
+            if (Session["user"] != null)
             {
-
-                HttpCookie getUserCookie = Request.Cookies["user"];
-                cookieUsername = getUserCookie.Values["schoolDirectorUsername"];
+                cookieUsername = Session["user"].ToString();
                 try
                 {
                     schoolDirectorUserProfileId = Int32.Parse(cookieUsername);
@@ -46,13 +44,9 @@ namespace Stripe
 
             else
             {
-
-                Response.Redirect("About.aspx");
+                Response.Redirect("LoginForm.aspx", false);
             }
 
-
-
-            
             SqlDataSource1.SelectCommand = "SELECT SE.event_Date AS EVENT_DATE, SE.event_Time AS EVENT_TIME, SE.event_Home_Team_Score AS HOME_TEAM_SCORE, SE.event_Away_Team_Score AS AWAY_TEAM_SCORE, SE.event_School_Field_Name AS FIELD_NAME FROM Sport_Event SE JOIN SCHOOL SCH ON SE.School_Home_sch_ID= SCH.sch_ID WHERE SCH.User_Profile_Director_Profile_ID= " + schoolDirectorUserProfileId + " AND SE.event_Date<=SYSDATETIME()";
 
             SqlDataSource2.SelectCommand = "SELECT SE.event_Date AS EVENT_DATE, SE.event_Time AS EVENT_TIME, SE.event_Home_Team_Score AS HOME_TEAM_SCORE, SE.event_Away_Team_Score AS AWAY_TEAM_SCORE, SE.event_School_Field_Name AS FIELD_NAME FROM Sport_Event SE JOIN SCHOOL SCH ON SE.School_Home_sch_ID= SCH.sch_ID WHERE SCH.User_Profile_Director_Profile_ID= " + schoolDirectorUserProfileId + " AND SE.event_Date>=SYSDATETIME()";
@@ -108,28 +102,27 @@ namespace Stripe
                         {
                             Console.WriteLine(ex.Message);
                         }
-
                     }
                 }
-
-
             }
-
         }
 
 
-        protected void createEventButton_Click(object sender, EventArgs e) {
+        protected void createEventButton_Click(object sender, EventArgs e)
+        {
             selectedSportName = GameTypeSelectionValue.SelectedItem.Text;
             selectedSchoolName = AwayTeamSelection.SelectedItem.Text;
-            eventDateSelected= EventDateTextBoxID.Text;
-            eventTimeSelected=EventTimeFieldID.Text;
-            eventDateSelected_Date= Convert.ToDateTime(eventDateSelected);
-            eventTimeSelected_Time=Convert.ToDateTime(eventTimeSelected);
-            eventLocationSelected=eventLocationFieldID.Text;
+            eventDateSelected = EventDateTextBoxID.Text;
+            eventTimeSelected = EventTimeFieldID.Text;
+            eventDateSelected_Date = Convert.ToDateTime(eventDateSelected);
+            eventTimeSelected_Time = Convert.ToDateTime(eventTimeSelected);
+            eventLocationSelected = eventLocationFieldID.Text;
 
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
-            using (SqlConnection connection = new SqlConnection(connectionString)) {
-                using (SqlCommand command = connection.CreateCommand()) {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
                     command.CommandText = "SELECT spt_Sport_Name_ID FROM SPORT_NAME WHERE spt_Name=@spt_Name";
                     command.Parameters.AddWithValue("@spt_Name", selectedSportName);
                     try
@@ -161,6 +154,7 @@ namespace Stripe
                     {
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
+
                         if (reader.HasRows)
                         {
                             while (reader.Read())
@@ -186,6 +180,7 @@ namespace Stripe
                     {
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
+
                         if (reader.HasRows)
                         {
                             while (reader.Read())
@@ -214,6 +209,7 @@ namespace Stripe
                                 + " ('n', @event_Date, @event_Time, 0, 0, "
                                 + " @event_School_Field_Name, @School_Home_sch_ID, "
                                 + " @School_Away_sch_ID, @Sport_Name_spt_Sport_Name_ID)";
+
                     command.Parameters.AddWithValue("@event_Date", eventDateSelected_Date);
                     command.Parameters.AddWithValue("@event_Time", eventTimeSelected_Time);
                     command.Parameters.AddWithValue("@event_School_Field_Name", eventLocationSelected);
@@ -231,20 +227,19 @@ namespace Stripe
                         Response.Write("<p>Error code " + exception.Number
                                        + ": " + exception.Message + "</p>");
                     }
-
-
                 }
             }
             SqlDataSource1.SelectCommand = "SELECT SE.event_Date AS EVENT_DATE, SE.event_Time AS EVENT_TIME, SE.event_Home_Team_Score AS HOME_TEAM_SCORE, SE.event_Away_Team_Score AS AWAY_TEAM_SCORE, SE.event_School_Field_Name AS FIELD_NAME FROM Sport_Event SE JOIN SCHOOL SCH ON SE.School_Home_sch_ID= SCH.sch_ID WHERE SCH.User_Profile_Director_Profile_ID= " + schoolDirectorUserProfileId + " AND SE.event_Date<=SYSDATETIME()";
 
             SqlDataSource2.SelectCommand = "SELECT SE.event_Date AS EVENT_DATE, SE.event_Time AS EVENT_TIME, SE.event_Home_Team_Score AS HOME_TEAM_SCORE, SE.event_Away_Team_Score AS AWAY_TEAM_SCORE, SE.event_School_Field_Name AS FIELD_NAME FROM Sport_Event SE JOIN SCHOOL SCH ON SE.School_Home_sch_ID= SCH.sch_ID WHERE SCH.User_Profile_Director_Profile_ID= " + schoolDirectorUserProfileId + " AND SE.event_Date>=SYSDATETIME()";
 
-
-            
-
-            
         }
 
-
+        protected void logoutout_Click(object sender, EventArgs e)
+        {
+            Session["loginid"] = null;
+            Session["user"] = null;
+            Response.Redirect("LoginForm.aspx", false);
+        }
     }
 }
