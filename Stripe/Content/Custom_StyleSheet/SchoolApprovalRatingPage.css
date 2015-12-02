@@ -1,9 +1,9 @@
 ﻿html, body {
     max-width: 100%;
     overflow-x: hidden !important;
-    /*background-color: #fefab5;*/
     
-    background-image: url('../../Images/TrialBack.jpg');
+    
+    background-color: #fefab5;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -254,4 +254,40 @@ opacity: 0.95;
 #myModal1::-webkit-scrollbar-thumb
 {
 	background-color: #000000;
+}
+
+/*Referee Rating Stars Styling*/
+
+.rating-star {
+    color: white;
+    font-size:99em;
+  }
+
+
+  .rating-hover  {
+   color: yellow !important;
+  }
+
+  .rating-chosen {
+   color: green;
+  }
+  .no-rating {
+    color: white;
+  }
+
+i {
+  text-shadow: 0px 0px 10px grey;
+}
+
+.meaning {
+    color: black;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+}
+
+.pleaseProvideFinalScoreID {
+
+    color: black;
+    font-weight: 800;
+    font-family: 'Arial', serif;
 }

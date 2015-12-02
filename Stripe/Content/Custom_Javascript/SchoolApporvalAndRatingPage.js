@@ -16,6 +16,7 @@
     $('#rating-container > .rating-star').click(function () {
         $(this).prevAll().andSelf().addClass("rating-chosen");
         $(this).nextAll().removeClass("rating-chosen");
+
     });
 
     $("#1-star").hover(function () {

@@ -24,7 +24,7 @@
                 <%--image div starts--%>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
                 <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
-                    <img src="Images/logo.png" />
+                    <img src="Images/MainLogo.png" />
                 </div>
                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
             </div>
@@ -52,7 +52,7 @@
 
                                     </li>
                                     <li>
-                                        <asp:HyperLink NavigateUrl=" " ID="eventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl="SchoolDirectorEventsPage.aspx" ID="eventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
 
 
                                     </li>

@@ -1,0 +1,251 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=latin,latin-ext);
+
+
+/*body styling options*/
+html, body {
+    max-width: 100%;
+    overflow-x: hidden !important;
+    background-color: #fefab5;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.text-center {
+    text-align: center !important;
+    font-size: 12px;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+    color: black;
+}
+
+
+/*VS styling*/
+.googleFont{
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 30px;
+    
+    color: white;
+    font-weight: 600;
+  
+
+}
+
+#EventDateTextBoxID,
+#eventLocationFieldID,
+#EventTimeFieldID
+ {
+height:40px;
+width:500px;
+}
+/*upcoming events school images styling*/
+#homeSchoolImageID, #awaySchoolImageID {
+    width: 100px;
+    height: 100px;
+}
+
+/*upcoming events and previous events scroll bar styling*/
+
+
+/*To Delete*/
+@import url(http://fonts.googleapis.com/css?family=Dosis:600,200|Great+Vibes);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+
+*, *:after, *:before {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    position: relative;
+}
+
+[class*="fontawesome-"]:before {
+    font-family: Arial, sans-serif;
+    
+}
+
+
+
+#mainSection {
+    background: rgb(229, 229, 229);
+    width: 2000px;
+    max-width: 1140px;
+    min-width: 1000px;
+    height: 700px;
+    margin: 2rem auto;
+    padding-right: 25px;
+    box-shadow: 0 0 6px rgba(0,0,0,.4);
+    border-radius:10px
+}
+
+.article {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    right: 10px;
+    overflow: auto;
+    transition: .9s;
+    transform: scale(0);
+    transform-origin: 0% 0%;
+    transition-delay: .1s;
+}
+
+    .article:before {
+        color: white;
+        font-size: 20rem;
+        font-weight: 100;
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+    }
+
+
+
+.eventLocationAndTimeInformation {
+text-align: center !important;
+    color: white;
+    font-weight: 800;
+    font-family: Calibri, serif;
+    border-color: black;
+    font-size: 20px;
+}
+
+
+.navSection {
+    background: rgb(3, 169, 244);
+    width: 150px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-top-right-radius:10px;
+    border-bottom-right-radius:10px
+}
+
+    .navSection:after {
+        content: '';
+        width: 5rem;
+        height: 7rem;
+        background: rgb(219, 68, 55);
+        position: absolute;
+        left: 0;
+        border-top: 0px solid transparent yellow;
+        border-bottom: 0px solid transparent orange;
+        transition: .5s;
+        border-top-right-radius:10px;
+    }
+
+label {
+    display: block;
+    height: 8rem;
+    width: 1000px;
+    color: black;
+    padding-top: 1rem;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-left: 0px solid #004050;
+    transition: .5s;
+    z-index: 4;
+
+}
+
+    label:hover {
+        color: white;
+        font-weight: 600;
+    }
+
+    label:before {
+        display: block;
+        font-size: 20rem;
+        padding-top: .8rem;
+        z-index: 2;
+    }
+#settings:checked ~ .navSection [for='settings'],
+
+#profile:checked ~ .navSection [for='profile'],
+#posts:checked ~ .navSection [for='posts'],
+#settings:checked ~ .navSection [for='settings'] {
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    position:center;
+    border-left: 1px solid #FF7361;
+}
+
+#settings:checked ~ .navSection [for='settings'] {
+}
+
+#profile:checked ~ .navSection [for='profile'] {
+}
+
+
+
+#settings:checked ~ .navSection:after {
+    top: 0rem;
+    border-top: 1px solid orange;
+    border-bottom: 1px solid yellow;
+    width:150px;
+    
+}
+
+#posts:checked ~ .navSection:after {
+    top: 8rem;
+    border-top: 1px solid white;
+    border-bottom: 1px solid yellow;
+    width:150px;
+}
+
+
+
+#settings:checked ~ .uno,
+#posts:checked ~ .dos,
+
+
+#books:checked ~ .cuatro {
+    display: block;
+    transform: scale(1);
+    transition-delay: .4s;
+}
+
+a {
+    color: rgba(0,0,0,.4);
+}
+
+    a:hover {
+        color: rgba(0,0,0,.2);
+    }
+
+
+/*Images styling*/
+#homeSchoolImageID, #awaySchoolImageID, #sportTypeImageID, #refereeType1ImageID, #refereeType2ImageID, #refereeType3ImageID {
+height: 70px;
+width:70px;
+}
+
+
+.gameInformationPanel{
+min-height: 100px !important;
+max-height: 130px !important;
+}
+
+.addcolor1 {
+background: rgb(217, 91, 67);
+}
+
+.addcolor2 {
+   background: rgb(236, 208, 120);
+    
+}
+
+.addcolor3 {
+    background-image: url('../../Images/tableBackImage.JPG');
+}
+

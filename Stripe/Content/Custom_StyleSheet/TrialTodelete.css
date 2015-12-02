@@ -1,0 +1,21 @@
+﻿
+  .rating-star {
+    color: white;
+    font-size:99em;
+  }
+
+
+  .rating-hover  {
+   color: yellow !important;
+  }
+
+  .rating-chosen {
+   color: green;
+  }
+  .no-rating {
+    color: white;
+  }
+
+i {
+  text-shadow: 0px 0px 10px grey;
+}

@@ -45,9 +45,29 @@ namespace Stripe
         int pendingApprovalCount;
         int refereeCurrentRatingPercentage;
         int refereeCurrentRatingFraction;
-
+        int refereeRatingTotalStars;
+        int refereeRatingSportEventID;
+        int refereeRatingRefereeProfileID;
+        int refereeRatingSportType_TypeID;
+        string refereeRatingSportEventDate;
+        string refereeRatingSportEventTime;
+        string refereeRatingSportEventLocation;
+        int refereeRatingAwaySchoolID;
+        int refereeRatingHomeSchoolID;
+        int refereeRatingSportTypeID;
+        string refereeRatingEventAwayTeamName;
+        string refereeRatingEventAwayTeamLogo;
+        string refereeRatingEventHomeTeamName;
+        string refereeRatingEventHomeTeamLogo;
+        string refereeRatingSportType_TypeName;
+        string refereeRatingSportName;
+        string refereeRatingRefereeFirstName;
+        string refereeRatingRefereeLastName;
+        int refereeRatingHomeTeamScore;
+        int refereeRatingAwayTeamScore;
+        int refereeRatingTotalStarsGiven;
         protected void Page_Load(object sender, EventArgs e)
-        {
+       {
             if (Request.Cookies["user"] != null)
             {
 
@@ -355,8 +375,224 @@ namespace Stripe
                         }
                     }
 
+                    using (SqlConnection connection = new SqlConnection(connectionString)) {
+                        using (SqlCommand command = connection.CreateCommand()) {
+                            command.CommandText =
+                                "SELECT TOP 1 "
+                                + " R.refEventHistory_Total_Stars_Rating, "
+                                + " R.Sport_Event_event_ID, "
+                                + " R.User_Profile_Referee_Profile_ID, "
+                                + " R.Sport_Type_Referees_sptTypeRef_ID, "
+                                + " S.event_Date, "
+                                + " S.event_Time, "
+                                + " S.event_School_Field_Name, "
+                                + " S.School_Away_sch_ID, "
+                                + " S.School_Home_sch_ID, "
+                                + " S.Sport_Name_spt_Sport_Name_ID "
+                                + " FROM Referee_Event_History R JOIN SPORT_EVENT S ON R.Sport_Event_event_ID= S. event_ID "
+                                + " WHERE R.User_Profile_School_Director_Profile_ID=@refereeRatingUser_Profile_School_Director_ID AND Referee_Status_refStatus_ID='A' "
+                                + " AND refEventHistory_Total_Stars_Rating=0 AND S.event_Date<=SYSDATETIME() ";
+                            command.Parameters.AddWithValue("@refereeRatingUser_Profile_School_Director_ID", schoolDirectorUserProfileId);
+                            try {
+                                connection.Open();
+                                SqlDataReader reader = command.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read()) {
+                                        refereeRatingTotalStars = reader.GetInt32(0);
+                                        refereeRatingSportEventID = reader.GetInt32(1);
+                                        refereeRatingRefereeProfileID = reader.GetInt32(2);
+                                        refereeRatingSportType_TypeID = reader.GetInt32(3);
+                                        refereeRatingSportEventDate = (reader.GetDateTime(4)).ToString();
+                                        refereeRatingSportEventTime = (reader.GetTimeSpan(5)).ToString();
+                                        refereeRatingSportEventLocation = reader.GetString(6);
+                                        refereeRatingAwaySchoolID = reader.GetInt32(7);
+                                        refereeRatingHomeSchoolID = reader.GetInt32(8);
+                                        refereeRatingSportTypeID = reader.GetInt32(9);
+                                        
+                                    }
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
+                    }
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
+                            command.CommandText =
+                                "SELECT " +
+                            " sch_Name, sch_Logo FROM School WHERE sch_ID=@refereeRatingsch_ID";
+                            command.Parameters.AddWithValue("@refereeRatingsch_ID", refereeRatingAwaySchoolID);
+                            try
+                            {
+                                connection.Open();
+                                SqlDataReader reader = command.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read())
+                                    {
+                                        refereeRatingEventAwayTeamName = reader.GetString(0); 
+                                        refereeRatingEventAwayTeamLogo = reader.GetString(1);
+                                    }
+                                }
+                                
+                                
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
+                    }
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
+                            command.CommandText =
+                                "SELECT " +
+                            " sch_Name, sch_Logo FROM School WHERE sch_ID=@refereeRatingsch_ID";
+                            command.Parameters.AddWithValue("@refereeRatingsch_ID", refereeRatingHomeSchoolID);
+                            try
+                            {
+                                connection.Open();
+                                SqlDataReader reader = command.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read())
+                                    {
+                                        
+                                        refereeRatingEventHomeTeamName = reader.GetString(0); 
+                                        refereeRatingEventHomeTeamLogo = reader.GetString(1);
+                                    }
+                                }
 
 
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
+                    }
+
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
+                            command.CommandText =
+                                "SELECT " +
+                                " sptTypeRef_Referee_Title FROM SPORT_TYPE_REFEREES where sptTypeRef_ID=@refereeRatingsptTypeRef_ID";
+
+
+                            command.Parameters.AddWithValue("@refereeRatingsptTypeRef_ID", refereeRatingSportType_TypeID);
+                            try
+                            {
+                                connection.Open();
+                                SqlDataReader reader = command.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read())
+                                    {
+                                        
+                                        refereeRatingSportType_TypeName = reader.GetString(0);
+
+                                    }
+                                }
+                            }
+
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
+                    }
+
+
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
+                            command.CommandText =
+                                "SELECT " +
+                                " spt_Name from Sport_Name where spt_Sport_Name_ID=@refereeRatingspt_Sport_Name_ID";
+
+
+                            command.Parameters.AddWithValue("@refereeRatingspt_Sport_Name_ID", refereeRatingSportTypeID);
+                            try
+                            {
+                                connection.Open();
+                                SqlDataReader reader = command.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read())
+                                    {
+                                        
+                                        refereeRatingSportName = reader.GetString(0);
+
+                                    }
+                                }
+                            }
+
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
+                    }
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
+                            command.CommandText =
+                                "SELECT " +
+                                " userProfile_First_Name, userProfile_Last_Name from User_Profile where userProfile_ID=@refereeRatinguserProfile_ID";
+
+
+                            command.Parameters.AddWithValue("@refereeRatinguserProfile_ID", refereeRatingRefereeProfileID);
+                            try
+                            {
+                                connection.Open();
+                                SqlDataReader reader = command.ExecuteReader();
+                                if (reader.HasRows)
+                                {
+                                    while (reader.Read())
+                                    {
+                                        
+                                        refereeRatingRefereeFirstName = reader.GetString(0);
+                                        refereeRatingRefereeLastName = reader.GetString(1);
+                                    }
+                                }
+                            }
+
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
+                    }
+
+
+
+                    refereeRatingAwayTeamNameLabelID.Text = refereeRatingEventAwayTeamName;
+                    refereeRatingHomeTeamNameLabelID.Text = refereeRatingEventHomeTeamName;
+                    refereeRatingEventDateLabelID.Text = refereeRatingSportEventDate;
+                    refereeRatingEventTimeLabelID.Text = refereeRatingSportEventTime;
+                    refereeRatingSportTypeLabelID.Text = refereeRatingSportName;
+                    refereeRatingEventFieldNameID.Text = refereeRatingSportEventLocation;
+                    refereeRatingRefereeTypeLabelID.Text = refereeRatingSportType_TypeName;
+                    refereeRatingRefereeNameLabelID.Text = refereeRatingRefereeFirstName + " " + refereeRatingRefereeLastName;
                     pendingApprovalRefereeCountID.Text = pendingApprovalCount.ToString();
                     homeSchoolNameID.Text = sportEventHomeTeamName;
                     awaySchoolNameID.Text = sportEventAwayTeamName;
@@ -374,6 +610,7 @@ namespace Stripe
                     refereeCityLabelID.Text = refereeCity;
                     refereeStateLabelID.Text = refereeZip;
                     referee1GameTypeID.Text = "Sport Name "+ refereeSportName;
+                    
                     referee1FullNameID.Text = refereeFirstName + " " + refereeLastName;
                     if (refereeTotalGamesOfficiated != 0 && refereeTotalRatings > 0)
                     { refereeCurrentRatingFraction = refereeTotalRatings / refereeTotalGamesOfficiated; }
@@ -1331,6 +1568,335 @@ namespace Stripe
 
 
         }
+
+
+        protected void refereeRatingButton_OnClick(object sender, EventArgs e)
+        {
+            refereeRatingTotalStarsGiven = Int32.Parse(RefereeRatingValue.SelectedValue);
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "SELECT TOP 1 "
+                        + " R.refEventHistory_Total_Stars_Rating, "
+                        + " R.Sport_Event_event_ID, "
+                        + " R.User_Profile_Referee_Profile_ID, "
+                        + " R.Sport_Type_Referees_sptTypeRef_ID, "
+                        + " S.event_Date, "
+                        + " S.event_Time, "
+                        + " S.event_School_Field_Name, "
+                        + " S.School_Away_sch_ID, "
+                        + " S.School_Home_sch_ID, "
+                        + " S.Sport_Name_spt_Sport_Name_ID "
+                        + " FROM Referee_Event_History R JOIN SPORT_EVENT S ON R.Sport_Event_event_ID= S. event_ID "
+                        + " WHERE R.User_Profile_School_Director_Profile_ID=@refereeRatingUser_Profile_School_Director_ID AND Referee_Status_refStatus_ID='A' "
+                        + " AND refEventHistory_Total_Stars_Rating=0 AND S.event_Date<=SYSDATETIME() ";
+                    command.Parameters.AddWithValue("@refereeRatingUser_Profile_School_Director_ID", schoolDirectorUserProfileId);
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                               
+                                refereeRatingSportEventID = reader.GetInt32(1);
+                                refereeRatingRefereeProfileID = reader.GetInt32(2);
+                                
+
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE Referee_Event_History " +
+                         " SET refEventHistory_Total_Stars_Rating= @refEventHistory_Total_Stars_Rating_Provided " 
+                         + " WHERE Sport_Event_event_ID=@Sport_Event_event_ID_Given AND User_Profile_Referee_Profile_ID=@User_Profile_Referee_Profile_ID_Given AND User_Profile_School_Director_Profile_ID=@User_Profile_School_Director_Profile_ID_Given";
+
+                    
+                    command.Parameters.AddWithValue("@refEventHistory_Total_Stars_Rating_Provided", refereeRatingTotalStarsGiven);
+                    command.Parameters.AddWithValue("@Sport_Event_event_ID_Given", refereeRatingSportEventID);
+                    command.Parameters.AddWithValue("@User_Profile_Referee_Profile_ID_Given", refereeRatingRefereeProfileID);
+                    command.Parameters.AddWithValue("@User_Profile_School_Director_Profile_ID_Given", schoolDirectorUserProfileId);
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException exception)
+                    {
+                        Response.Write("<p>Error code " + exception.Number
+                                       + ": " + exception.Message + "</p>");
+                    }
+                }
+            }
+
+            char eventCompletionGiven= 'y';
+            refereeRatingHomeTeamScore = Int32.Parse(homeTeamScoreTextFieldID.Text);
+            refereeRatingAwayTeamScore = Int32.Parse(awayTeamScoreTextFieldID.Text);
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE SPORT_EVENT " +
+                        " SET event_Completion= @event_Completion_Given, event_Home_Team_Score=@event_Home_Team_Score_Given, event_Away_Team_Score=@event_Away_Team_Score_Given " +
+                        " WHERE event_ID=@Sport_Event_event_ID_Given ";
+
+                    command.Parameters.AddWithValue("@event_Completion_Given", eventCompletionGiven);
+                    command.Parameters.AddWithValue("@Sport_Event_event_ID_Given", refereeRatingSportEventID);
+                    
+                    command.Parameters.AddWithValue("@event_Home_Team_Score_Given", refereeRatingHomeTeamScore);
+                    command.Parameters.AddWithValue("@event_Away_Team_Score_Given", refereeRatingAwayTeamScore);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException exception)
+                    {
+                        Response.Write("<p>Error code " + exception.Number
+                                       + ": " + exception.Message + "</p>");
+                    }
+                }
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "SELECT TOP 1 "
+                        + " R.refEventHistory_Total_Stars_Rating, "
+                        + " R.Sport_Event_event_ID, "
+                        + " R.User_Profile_Referee_Profile_ID, "
+                        + " R.Sport_Type_Referees_sptTypeRef_ID, "
+                        + " S.event_Date, "
+                        + " S.event_Time, "
+                        + " S.event_School_Field_Name, "
+                        + " S.School_Away_sch_ID, "
+                        + " S.School_Home_sch_ID, "
+                        + " S.Sport_Name_spt_Sport_Name_ID "
+                        + " FROM Referee_Event_History R JOIN SPORT_EVENT S ON R.Sport_Event_event_ID= S. event_ID "
+                        + " WHERE R.User_Profile_School_Director_Profile_ID=@refereeRatingUser_Profile_School_Director_ID AND Referee_Status_refStatus_ID='A' "
+                        + " AND refEventHistory_Total_Stars_Rating=0 AND S.event_Date<=SYSDATETIME() ";
+                    command.Parameters.AddWithValue("@refereeRatingUser_Profile_School_Director_ID", schoolDirectorUserProfileId);
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                refereeRatingTotalStars = reader.GetInt32(0);
+                                refereeRatingSportEventID = reader.GetInt32(1);
+                                refereeRatingRefereeProfileID = reader.GetInt32(2);
+                                refereeRatingSportType_TypeID = reader.GetInt32(3);
+                                refereeRatingSportEventDate = (reader.GetDateTime(4)).ToString();
+                                refereeRatingSportEventTime = (reader.GetTimeSpan(5)).ToString();
+                                refereeRatingSportEventLocation = reader.GetString(6);
+                                refereeRatingAwaySchoolID = reader.GetInt32(7);
+                                refereeRatingHomeSchoolID = reader.GetInt32(8);
+                                refereeRatingSportTypeID = reader.GetInt32(9);
+
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "SELECT " +
+                    " sch_Name, sch_Logo FROM School WHERE sch_ID=@refereeRatingsch_ID";
+                    command.Parameters.AddWithValue("@refereeRatingsch_ID", refereeRatingAwaySchoolID);
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                refereeRatingEventAwayTeamName = reader.GetString(0);
+                                refereeRatingEventAwayTeamLogo = reader.GetString(1);
+                            }
+                        }
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "SELECT " +
+                    " sch_Name, sch_Logo FROM School WHERE sch_ID=@refereeRatingsch_ID";
+                    command.Parameters.AddWithValue("@refereeRatingsch_ID", refereeRatingHomeSchoolID);
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+
+                                refereeRatingEventHomeTeamName = reader.GetString(0);
+                                refereeRatingEventHomeTeamLogo = reader.GetString(1);
+                            }
+                        }
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "SELECT " +
+                        " sptTypeRef_Referee_Title FROM SPORT_TYPE_REFEREES where sptTypeRef_ID=@refereeRatingsptTypeRef_ID";
+
+
+                    command.Parameters.AddWithValue("@refereeRatingsptTypeRef_ID", refereeRatingSportType_TypeID);
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+
+                                refereeRatingSportType_TypeName = reader.GetString(0);
+
+                            }
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "SELECT " +
+                        " spt_Name from Sport_Name where spt_Sport_Name_ID=@refereeRatingspt_Sport_Name_ID";
+
+
+                    command.Parameters.AddWithValue("@refereeRatingspt_Sport_Name_ID", refereeRatingSportTypeID);
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+
+                                refereeRatingSportName = reader.GetString(0);
+
+                            }
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "SELECT " +
+                        " userProfile_First_Name, userProfile_Last_Name from User_Profile where userProfile_ID=@refereeRatinguserProfile_ID";
+
+
+                    command.Parameters.AddWithValue("@refereeRatinguserProfile_ID", refereeRatingRefereeProfileID);
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+
+                                refereeRatingRefereeFirstName = reader.GetString(0);
+                                refereeRatingRefereeLastName = reader.GetString(1);
+                            }
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+            refereeRatingAwayTeamNameLabelID.Text = refereeRatingEventAwayTeamName;
+            refereeRatingHomeTeamNameLabelID.Text = refereeRatingEventHomeTeamName;
+            refereeRatingEventDateLabelID.Text = refereeRatingSportEventDate;
+            refereeRatingEventTimeLabelID.Text = refereeRatingSportEventTime;
+            refereeRatingSportTypeLabelID.Text = refereeRatingSportName;
+            refereeRatingEventFieldNameID.Text = refereeRatingSportEventLocation;
+            refereeRatingRefereeTypeLabelID.Text = refereeRatingSportType_TypeName;
+            refereeRatingRefereeNameLabelID.Text = refereeRatingRefereeFirstName + " " + refereeRatingRefereeLastName;
+
+
+
+
+
+        }
+
+
+
 
     }
 }

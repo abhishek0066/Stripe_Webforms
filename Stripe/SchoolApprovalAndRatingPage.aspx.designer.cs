@@ -281,5 +281,131 @@ namespace Stripe {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label refereeStateLabelID;
+        
+        /// <summary>
+        /// refereeRatingHomeTeamNameLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label refereeRatingHomeTeamNameLabelID;
+        
+        /// <summary>
+        /// refereeRatingAwayTeamNameLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label refereeRatingAwayTeamNameLabelID;
+        
+        /// <summary>
+        /// refereeRatingEventDateLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label refereeRatingEventDateLabelID;
+        
+        /// <summary>
+        /// refereeRatingEventTimeLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label refereeRatingEventTimeLabelID;
+        
+        /// <summary>
+        /// dummyLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label dummyLabelID;
+        
+        /// <summary>
+        /// refereeRatingSportTypeLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label refereeRatingSportTypeLabelID;
+        
+        /// <summary>
+        /// refereeRatingEventLocationLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label refereeRatingEventLocationLabelID;
+        
+        /// <summary>
+        /// refereeRatingEventFieldNameID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label refereeRatingEventFieldNameID;
+        
+        /// <summary>
+        /// refereeRatingRefereeTypeLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label refereeRatingRefereeTypeLabelID;
+        
+        /// <summary>
+        /// refereeRatingRefereeNameLabelID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label refereeRatingRefereeNameLabelID;
+        
+        /// <summary>
+        /// RefereeRatingValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList RefereeRatingValue;
+        
+        /// <summary>
+        /// awayTeamScoreTextFieldID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox awayTeamScoreTextFieldID;
+        
+        /// <summary>
+        /// homeTeamScoreTextFieldID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox homeTeamScoreTextFieldID;
+        
+        /// <summary>
+        /// saveRefereeRatingInformation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton saveRefereeRatingInformation;
     }
 }

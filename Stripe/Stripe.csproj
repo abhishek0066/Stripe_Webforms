@@ -119,16 +119,25 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\Custom_Javascript\bootstrap-timepicker.js" />
     <Content Include="Content\Custom_Javascript\jquery-2.1.4.min.js" />
     <Content Include="Content\Custom_Javascript\RefereeEventPage.js" />
+    <Content Include="Content\Custom_Javascript\SchoolApporvalAndRatingPage.js" />
+    <Content Include="Content\Custom_Javascript\SchoolDirectorEventsPage.js" />
     <Content Include="Content\Custom_Javascript\trialJavaScriptToDelete.js" />
+    <Content Include="Content\Custom_StyleSheet\bootstrap-timepicker.css" />
     <Content Include="Content\Custom_StyleSheet\RefereeEventPage.css" />
     <Content Include="Content\Custom_StyleSheet\RefereeHomePage.css" />
     <Content Include="Content\Custom_StyleSheet\RefereeUpdatePage.css" />
     <Content Include="Content\Custom_StyleSheet\SchoolApprovalRatingPage.css" />
+    <Content Include="Content\Custom_StyleSheet\SchoolDirectorEventsPage.css" />
+    <Content Include="Content\Custom_StyleSheet\SchoolDirectorEventsPagePikaday.css" />
+    <Content Include="Content\Custom_StyleSheet\SchoolDirectorEventsPageSite.css" />
+    <Content Include="Content\Custom_StyleSheet\SchoolDirectorEventsPageTheme.css" />
     <Content Include="Content\Custom_StyleSheet\SchoolHomePage.css" />
     <Content Include="Content\Custom_StyleSheet\SchoolUpdatePage.css" />
     <Content Include="Content\Custom_StyleSheet\trialStyleSheetToDelete.css" />
+    <Content Include="Content\Custom_StyleSheet\TrialTodelete.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -190,6 +199,7 @@
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\MainLogo.png" />
     <Content Include="Images\orderedList0.png" />
     <Content Include="Images\orderedList1.png" />
     <Content Include="Images\orderedList2.png" />
@@ -207,19 +217,21 @@
     <Content Include="Images\tableBackImage.JPG" />
     <Content Include="Images\TrialBack.jpg" />
     <Content Include="packages.config" />
+    <Content Include="Content\Custom_StyleSheet\bootstrap-timepicker.min" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="RefereeEventsPage.aspx" />
     <Content Include="RefereeHomePage.aspx" />
     <Content Include="RefereeUpdateInformationPage.aspx" />
     <Content Include="SchooHomePage.aspx" />
     <Content Include="SchoolApprovalAndRatingPage.aspx" />
+    <Content Include="SchoolDirectorEventsPage.aspx" />
     <Content Include="SchoolUpdateInformationPage.aspx" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="todeletetrial.aspx" />
+    <Content Include="TrialToDelete.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -331,6 +343,13 @@
     <Compile Include="SchoolApprovalAndRatingPage.aspx.designer.cs">
       <DependentUpon>SchoolApprovalAndRatingPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SchoolDirectorEventsPage.aspx.cs">
+      <DependentUpon>SchoolDirectorEventsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SchoolDirectorEventsPage.aspx.designer.cs">
+      <DependentUpon>SchoolDirectorEventsPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SchoolUpdateInformationPage.aspx.cs">
       <DependentUpon>SchoolUpdateInformationPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -352,12 +371,12 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="todeletetrial.aspx.cs">
-      <DependentUpon>todeletetrial.aspx</DependentUpon>
+    <Compile Include="TrialToDelete.aspx.cs">
+      <DependentUpon>TrialToDelete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="todeletetrial.aspx.designer.cs">
-      <DependentUpon>todeletetrial.aspx</DependentUpon>
+    <Compile Include="TrialToDelete.aspx.designer.cs">
+      <DependentUpon>TrialToDelete.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

@@ -8,13 +8,16 @@
     <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <script src="./bootstrap/customBootstrapJS/jquery-latest.js"></script>
     <script src="./bootstrap/js/bootstrap.js"></script>
-    
+
     <link href="./bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="./bootstrap/css/bootstrap.css" rel="stylesheet" />
 
     <link href="./bootstrap/customBootstrapCSS/prettify.css" rel="stylesheet" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
     <link href="Content/Custom_StyleSheet/SchoolApprovalRatingPage.css" rel="stylesheet" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="Content/Custom_Javascript/SchoolApporvalAndRatingPage.js"></script>
     <script>
         $(function () {
             $('#myTab a:last').tab('show');
@@ -32,7 +35,7 @@
                     <%--image div starts--%>
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
                     <div class="col-xs-4 col-sm-4 col-md-6 col-lg-6">
-                        <img src="Images/logo.png" />
+                        <img src="Images/MainLogo.png" />
                     </div>
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
                 </div>
@@ -475,7 +478,188 @@
                                 <div role="tabpanel" class="tab-pane fade" id="profile">
                                     <%--Review navigation body starts--%>
                                     <div class="panel panel-success navigationTabsBodyPanelStyling">
-                                        asdasdfafda
+                                        <div class="panel-heading  refereeApprovalMainPanelHeadingStyling">Pending Referee Ratings</div>
+                                        <div class="panel-body">
+                                            <div class="row" style="margin-top: 20px">
+                                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+                                                <div class="col-xs-6 col-sm6 col-md-6 col-lg-6">
+                                                    <div class="panel  panel-success">
+                                                        <%--home and away panel starts--%>
+
+                                                        <table class="table table-hover text-center">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-center">
+                                                                        <asp:Label ID="refereeRatingHomeTeamNameLabelID" runat="server" Text="HOME"></asp:Label>
+                                                                    </td>
+
+                                                                    <td></td>
+                                                                    <td class="text-center">
+                                                                        <asp:Label ID="refereeRatingAwayTeamNameLabelID" runat="server" Text="AWAY"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class=" addcolor3">
+                                                                    <td class="text-center">
+                                                                        <center><div class="schoolImagesStyling"><img src="Images/2_Normal_Comm_Logo.jpg" /></div></center>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <h2 class="googleFont" style="color: black">VS</h2>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <center><div class="schoolImagesStyling"><img src="Images/2_Normal_Comm_Logo.jpg" /></div></center>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                    <%--game information panel starts--%>
+                                                    <div class="panel panel-success">
+                                                        <table class="table table-hover">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-center">
+                                                                        <asp:Label ID="refereeRatingEventDateLabelID" runat="server" Text="Date"></asp:Label>
+                                                                    </td>
+
+
+                                                                    <td class="text-center">
+                                                                        <asp:Label ID="refereeRatingEventTimeLabelID" runat="server" Text="Time"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center">
+                                                                        <asp:Label ID="dummyLabelID" runat="server" Text="Sport Type"></asp:Label>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <asp:Label ID="refereeRatingSportTypeLabelID" runat="server" Text="Sport Type"></asp:Label>
+                                                                    </td>
+
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-center">
+                                                                        <asp:Label ID="refereeRatingEventLocationLabelID" runat="server" Text="Location"></asp:Label>
+                                                                    </td>
+
+
+                                                                    <td class="text-center">
+                                                                        <asp:Label ID="refereeRatingEventFieldNameID" runat="server" Text="Field Name"></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+                                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                                    <div class="panel panel-success">
+                                                        <%--pending referee approval list panel starts--%>
+                                                        <div class="panel-heading mainPanelStyling">Rating Panel</div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+
+                                                                <div class="col-xs-1 col-sm-1 col-md-3 col-lg-3">
+                                                                    <table class="table table-hover">
+                                                                        <tbody>
+                                                                            <tr>
+
+
+                                                                                <td class="text-center">
+                                                                                    <asp:Label ID="refereeRatingRefereeTypeLabelID" runat="server" Text="Referee Type 2"></asp:Label>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr>
+
+
+                                                                                <td class="text-center">
+                                                                                    <center>
+                                                                                <div class="pendingRefereePictureStyling"><img src="Images/stormTrooper.jpg" id="refereeType2ImageID" /></div>
+
+                                                                            </center>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr>
+
+
+                                                                                <td class="text-center">
+                                                                                    <asp:Label ID="refereeRatingRefereeNameLabelID" runat="server" Text="Referee Name 2"></asp:Label>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="col-xs-1 col-sm-1 col-md-9 col-lg-9">
+                                                                    <center>
+                                                                    
+                                                                
+                                                                <asp:Label class="pleaseProvideFinalScoreID" runat="server" Text="Please Provide Rating"></asp:Label></center>
+                                                                    <asp:DropDownList class="form-control" ID="RefereeRatingValue" runat="server">
+                                                                        <asp:ListItem Selected="True">Please Select</asp:ListItem>
+                                                                        <asp:ListItem Value="1">1</asp:ListItem>
+                                                                        <asp:ListItem Value="2">2</asp:ListItem>
+                                                                        <asp:ListItem Value="3">3</asp:ListItem>
+                                                                        <asp:ListItem Value="4">4</asp:ListItem>
+                                                                        <asp:ListItem Value="5">5</asp:ListItem>
+                                                                    </asp:DropDownList>
+                                                                    <br />
+                                                                    <br />
+                                                                    <br />
+                                                                    <br />
+                                                                    <center><asp:Label class="pleaseProvideFinalScoreID" runat="server" Text="Please Provide Final Scores Below"></asp:Label></center>
+                                                                    <br/>
+                                                                    <table class="table table-hover">
+                                                                        <tbody>
+                                                                            <tr>
+
+
+                                                                                <td class="text-center">Away Team Score
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <asp:TextBox ID="awayTeamScoreTextFieldID" placeholder="SCORE" class="form-control" runat="server"></asp:TextBox>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr>
+
+
+                                                                                <td class="text-center">Home Team Score
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <asp:TextBox ID="homeTeamScoreTextFieldID" placeholder="SCORE" class="form-control" runat="server"></asp:TextBox>
+                                                                                </td>
+
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <div>
+                                                                        <center>
+                                                                        <asp:LinkButton ID="saveRefereeRatingInformation" runat="server" CssClass="btn btn-success btn-lg" OnClick="refereeRatingButton_OnClick">
+                                                        <i aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></i> Rate Referee</asp:LinkButton></center>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                                 <%--Review navigation body ends--%>
