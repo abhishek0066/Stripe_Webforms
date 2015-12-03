@@ -50,10 +50,10 @@
                                 <%--collapse header content begins--%>
                                 <ul class="nav nav-tabs nav-justified">
                                     <%--<ul class="nav navbar-nav">--%>
-                                    <li class="active">
+                                    <li>
                                         <asp:HyperLink NavigateUrl="SchooHomePage.aspx" ID="schoolProfileHomeID" runat="server"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><b> Home</b><span class="sr-only"></span></asp:HyperLink>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <asp:HyperLink NavigateUrl="SchoolDirectorEventsPage.aspx" ID="schooleventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
                                     </li>
                                     <li>

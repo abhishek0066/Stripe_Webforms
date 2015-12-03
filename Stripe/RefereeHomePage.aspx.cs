@@ -13,6 +13,8 @@ namespace Stripe
 {
     public partial class RefereeHomePage : System.Web.UI.Page
     {
+        int refereeUsername;
+        int refereeLoginId;
         int mainRefereeUsername;
         string refereeFirstName = "";
         string refereeLastName = "";
@@ -34,7 +36,25 @@ namespace Stripe
             string connectionString =
             ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
 
-            int refereeUsername=11;
+            if (Session["loginid"] != null)
+            {
+
+                try
+                {
+                    refereeLoginId = Int32.Parse(Session["loginid"].ToString());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            else
+            {
+
+                Response.Redirect("LoginForm.aspx", false);
+            }
+
             string refereeFirstName = "";
             string refereeLastName = "";
             string refereeEmail = "";
@@ -48,17 +68,18 @@ namespace Stripe
             string refereeLatitude = "";
             string refereeLongitude = "";
             string refereeSpecializationType = "";
-            int refereeSpecializationTypeID=0;
-            int refereeTotalRatings=0;
-            int refereeTotalGamesOfficiated=0;
+            int refereeSpecializationTypeID = 0;
+            int refereeTotalRatings = 0;
+            int refereeTotalGamesOfficiated = 0;
             int refereeCurrentRatingFraction;
             int refereeCurrentRatingPercentage;
-            
+
 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = connection.CreateCommand()) {
+                using (SqlCommand command = connection.CreateCommand())
+                {
                     command.CommandText =
                         "SELECT "
                         + "U.userProfile_ID, "
@@ -72,23 +93,25 @@ namespace Stripe
                         + "U.userProfile_Zip, "
                         + "U.userProfile_Photo, "
                         + "U.userProfile_Background_Description, "
-						+ "U.userProfile_Lat, "
-						+ "U.userProfile_Long, "
-						+ "R.Sport_Name_spt_Sport_Name_ID, "
+                        + "U.userProfile_Lat, "
+                        + "U.userProfile_Long, "
+                        + "R.Sport_Name_spt_Sport_Name_ID, "
                         + "R.User_Profile_Referee_Total_Ratings, "
                         + "R.User_Profile_Referee_Games_Officiated "
                         + "FROM "
                         + "USER_PROFILE U JOIN USER_PROFILE_REFEREE R "
                         + "ON U.userProfile_ID= R.User_Profile_userProfile_ID "
-                        + "WHERE U.userProfile_ID=@usernameDB";
+                        + "WHERE U.Login_login_ID=@loginId";
 
-                    command.Parameters.AddWithValue("@usernameDB", refereeUsername);
+                    command.Parameters.AddWithValue("@loginId", refereeLoginId);
                     try
                     {
                         connection.Open();
                         SqlDataReader reader = command.ExecuteReader();
-                        if (reader.HasRows) {
-                            while (reader.Read()) {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
                                 refereeUsername = reader.GetInt32(0);
                                 refereeFirstName = reader.GetString(1);
                                 refereeLastName = reader.GetString(2);
@@ -100,12 +123,44 @@ namespace Stripe
                                 refereeZip = reader.GetString(8);
                                 refereeProfilePicture = reader.GetString(9);
                                 refereeBackgroundDescription = reader.GetString(10);
-                                refereeLatitude= reader.GetDecimal(11).ToString();
-                                refereeLongitude= reader.GetDecimal(12).ToString();
+                                refereeLatitude = reader.GetDecimal(11).ToString();
+                                refereeLongitude = reader.GetDecimal(12).ToString();
                                 refereeSpecializationTypeID = reader.GetInt32(13);
-                                refereeTotalRatings= reader.GetInt32(14);
-                                refereeTotalGamesOfficiated= reader.GetInt32(15);
-                                
+                                refereeTotalRatings = reader.GetInt32(14);
+                                refereeTotalGamesOfficiated = reader.GetInt32(15);
+
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "SELECT " +
+                        "S.spt_Name " +
+                        "FROM Sport_Name S " +
+                        "WHERE spt_Sport_Name_ID=@sportNameDB";
+                    command.Parameters.AddWithValue("@sportNameDB", refereeSpecializationTypeID);
+
+                    try
+                    {
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                refereeSpecializationType = reader.GetString(0);
                             }
                         }
 
@@ -115,40 +170,9 @@ namespace Stripe
                         Console.WriteLine(ex.Message);
                     }
 
-                   
-                }
-            
-            }
-
-            using (SqlConnection connection = new SqlConnection(connectionString)) {
-
-                using (SqlCommand command = connection.CreateCommand()) { 
-                    command.CommandText =
-                        "SELECT "+
-                        "S.spt_Name "+
-                        "FROM Sport_Name S "+
-                        "WHERE spt_Sport_Name_ID=@sportNameDB";
-                    command.Parameters.AddWithValue("@sportNameDB", refereeSpecializationTypeID);
-                
-                 try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    if (reader.HasRows) {
-                        while (reader.Read()) {
-                            refereeSpecializationType = reader.GetString(0);
-                        }
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
                 }
 
-                }
-               
-                
+
             }
 
             if (refereeTotalGamesOfficiated != 0 && refereeTotalRatings > 0)
@@ -158,7 +182,7 @@ namespace Stripe
             {
                 refereeCurrentRatingFraction = 1;
             }
-            
+
             refereeCurrentRatingPercentage = (refereeCurrentRatingFraction * 100) / 5;
 
             mainRefereeUsername = refereeUsername;
@@ -175,22 +199,27 @@ namespace Stripe
             totalNumberOfRatingsID.Text = refereeTotalRatings.ToString();
             totalNumberOfGamesID.Text = refereeTotalGamesOfficiated.ToString();
             refereeRatingValueID.Text = refereeCurrentRatingFraction.ToString();
-            refereeRatingStarsID.Style.Add("width", refereeCurrentRatingPercentage+"%");
+            refereeRatingStarsID.Style.Add("width", refereeCurrentRatingPercentage + "%");
 
             //Save user information to cookie
-            HttpCookie createUserCookie = new HttpCookie("user");
-            createUserCookie.Values["refereeUsername"] = mainRefereeUsername.ToString();
-            createUserCookie.Expires = DateTime.Now.AddDays(14);
-            Response.Cookies.Add(createUserCookie);
+            Session["userid"] = refereeUsername; ;
 
-           }
-
-        protected void updateInformationButton_Click(object sender, EventArgs e) {
-
-           // Response.Redirect("RefereeUpdateInformationPage.aspx?userProfile_ID= " + mainRefereeUsername);
-           Response.Redirect("RefereeUpdateInformationPage.aspx");
         }
 
-        
+        protected void updateInformationButton_Click(object sender, EventArgs e)
+        {
+
+            // Response.Redirect("RefereeUpdateInformationPage.aspx?userProfile_ID= " + mainRefereeUsername);
+            Response.Redirect("RefereeUpdateInformationPage.aspx");
+        }
+
+        protected void logoutout_Click(object sender, EventArgs e)
+        {
+            Session["loginid"] = null;
+            Session["userid"] = null;
+            Response.Redirect("LoginForm.aspx", false);
+        }
+
+
     }
 }

@@ -42,14 +42,11 @@ namespace Stripe
             int refereeCurrentRatingPercentage;
             string refereePassword = "";
 
-            if (Request.Cookies["user"] != null)
+            if (Session["userid"] != null)
             {
-                // Get username from cookie
-                HttpCookie getUserCookie = Request.Cookies["user"];
-                cookieUsername = getUserCookie.Values["refereeUsername"];
                 try
                 {
-                    refereeUserProfileID = Int32.Parse(cookieUsername);
+                    refereeUserProfileID = Int32.Parse(Session["userid"].ToString());
                 }
                 catch (Exception ex)
                 {
@@ -59,9 +56,9 @@ namespace Stripe
             else
             {
 
-                Response.Redirect("About.aspx");
+                Response.Redirect("LoginForm.aspx", false);
             }
-            if (!Page.IsPostBack) 
+            if (!Page.IsPostBack)
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
 
@@ -255,8 +252,6 @@ namespace Stripe
                 totalNumberOfGamesID.Text = refereeTotalGamesOfficiated.ToString();
                 refereeRatingValueID.Text = refereeCurrentRatingFraction.ToString();
                 refereeRatingStarsID.Style.Add("width", refereeCurrentRatingPercentage + "%");
-
-
             }
 
         }
@@ -273,33 +268,37 @@ namespace Stripe
             string refereeCity = cityFieldID.Text;
             string refereeState = stateFieldID.Text;
             string refereeZip = zipFieldID.Text;
-            string refereeBackgroundInformation = backgroundDescriptionID.Text; 
+            string refereeBackgroundInformation = backgroundDescriptionID.Text;
             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
-            using (SqlConnection connection = new SqlConnection(connectionString)) { 
-                using (SqlCommand command = connection.CreateCommand()){
-                    command.CommandText = "UPDATE LOGIN "+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE LOGIN " +
                         "SET login_password=@refereeLoginPassword WHERE login_ID = @login_ID";
                     command.Parameters.AddWithValue("@refereeLoginPassword", refereePassword);
                     command.Parameters.AddWithValue("@login_ID", refereeLoginID);
                     try
-                        {
-                            connection.Open();
-                            command.ExecuteNonQuery();
-                        }
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
                     catch (SqlException exception)
-                        {
-                            Response.Write("<p>Error code " + exception.Number
-                                           + ": " + exception.Message + "</p>");
-                        }
-                        
+                    {
+                        Response.Write("<p>Error code " + exception.Number
+                                       + ": " + exception.Message + "</p>");
+                    }
+
                 }
-                
+
             }
 
 
-            using (SqlConnection connection = new SqlConnection(connectionString)) {
-                using (SqlCommand command = connection.CreateCommand()) { 
-                    command.CommandText = "UPDATE User_Profile "+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE User_Profile " +
                         "SET userProfile_First_Name=@userProfile_First_Name, userProfile_Last_Name= @userProfile_Last_Name, userProfile_Email= @userProfile_Email, userProfile_Phone= @userProfile_Phone, userProfile_Street=@userProfile_Street, userProfile_City=@userProfile_City, userProfile_State=@userProfile_State, userProfile_Zip=@userProfile_Zip, "
                         + "userProfile_Background_Description=@userProfile_Background_Description WHERE userProfile_ID=@userProfile_ID";
                     command.Parameters.AddWithValue("@userProfile_First_Name", refereeFirstName);
@@ -322,19 +321,26 @@ namespace Stripe
                         Response.Write("<p>Error code " + exception.Number
                                        + ": " + exception.Message + "</p>");
                     }
-                    
-                    
 
-    
+
+
+
                 }
             }
             Page_Load(null, EventArgs.Empty);
-            }
+        }
 
-
+        protected void logoutout_Click(object sender, EventArgs e)
+        {
+            Session["loginid"] = null;
+            Session["userid"] = null;
+            Response.Redirect("LoginForm.aspx", false);
         }
 
 
-
-
     }
+
+
+
+
+}

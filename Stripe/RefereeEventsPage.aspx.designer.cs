@@ -148,21 +148,30 @@ namespace Stripe {
         protected global::System.Web.UI.WebControls.DropDownList GamePositionTypeSelectionValue;
         
         /// <summary>
-        /// updateUserProfileID control.
+        /// registerForEvent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton updateUserProfileID;
+        protected global::System.Web.UI.WebControls.LinkButton registerForEvent;
         
         /// <summary>
-        /// LinkButton1 control.
+        /// DeclineEvent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton DeclineEvent;
+        
+        /// <summary>
+        /// NoNewEventToRegister control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoNewEventToRegister;
     }
 }

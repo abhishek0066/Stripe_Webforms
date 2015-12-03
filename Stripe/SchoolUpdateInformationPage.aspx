@@ -54,7 +54,7 @@
                                         <asp:HyperLink NavigateUrl="SchoolDirectorEventsPage.aspx" ID="schooleventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
                                     </li>
                                     <li>
-                                        <asp:HyperLink NavigateUrl=" " ID="searchID" runat="server"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><b> Search</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl="#" ID="searchID" runat="server"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><b> Search</b><span class="sr-only"></span></asp:HyperLink>
                                     </li>
                                     <li>
                                         <asp:HyperLink NavigateUrl="SchoolApprovalAndRatingPage.aspx" ID="schoolapproveAndRatingID" runat="server"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><b> Approval & Rating</b><span class="sr-only"></span></asp:HyperLink>
