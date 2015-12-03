@@ -43,7 +43,8 @@ namespace Stripe
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["user"] != null) {
+            if (Request.Cookies["user"] != null)
+            {
 
                 HttpCookie getUserCookie = Request.Cookies["user"];
                 cookieUsername = getUserCookie.Values["schoolDirectorUsername"];
@@ -63,7 +64,8 @@ namespace Stripe
                 Response.Redirect("About.aspx");
             }
 
-            if (!Page.IsPostBack) {
+            if (!Page.IsPostBack)
+            {
 
                 string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -192,9 +194,9 @@ namespace Stripe
                 schoolCityFieldID.Text = schoolCityName;
                 schoolStateFieldID.Text = schoolStateName;
                 schoolZipFieldID.Text = schoolZipCode;
-                directorFirstNameFieldID.Text = schoolDirectorFirstName; 
-                directorLastNameFieldID.Text=schoolDirectorLastName;
-                schoolNameFieldID.Text = schoolName; 
+                directorFirstNameFieldID.Text = schoolDirectorFirstName;
+                directorLastNameFieldID.Text = schoolDirectorLastName;
+                schoolNameFieldID.Text = schoolName;
                 directorPasswordFieldID.Attributes.Add("value", schoolDirectorPassword);
                 directorConfirmPasswordFieldID.Attributes.Add("value", schoolDirectorPassword);
                 directorEmailFieldID.Text = schoolDirectorEmail;
@@ -203,14 +205,15 @@ namespace Stripe
                 directorCityFieldID.Text = schoolDirectorCity;
                 directorStateFieldID.Text = schoolDirectorState;
                 directorZipFieldID.Text = schoolDirectorZipCode;
-                directorBackgroundDescriptionFieldID.Text= schoolDirectorBackgroundDescription;
+                directorBackgroundDescriptionFieldID.Text = schoolDirectorBackgroundDescription;
                 directorFullNameLabelID.Text = schoolDirectorFirstName + " " + schoolDirectorLastName;
             }
 
         }
 
 
-        protected void updateInformationButton_Click(object sender, EventArgs e) {
+        protected void updateInformationButton_Click(object sender, EventArgs e)
+        {
 
             schoolStreetAddress = schoolStreetAddressFieldID.Text;
             schoolCityName = schoolCityFieldID.Text;
@@ -227,93 +230,93 @@ namespace Stripe
             schoolDirectorState = directorStateFieldID.Text;
             schoolDirectorZipCode = directorZipFieldID.Text;
             schoolDirectorBackgroundDescription = directorBackgroundDescriptionFieldID.Text;
-             string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
-             using (SqlConnection connection = new SqlConnection(connectionString))
-             {
-                 using (SqlCommand command = connection.CreateCommand())
-                 {
-                     command.CommandText = "UPDATE LOGIN " +
-                         "SET login_password=@loginPassword WHERE login_ID = @login_ID";
-                     command.Parameters.AddWithValue("@loginPassword", schoolDirectorPassword);
-                     command.Parameters.AddWithValue("@login_ID", schoolDirectorLoginID);
-                     try
-                     {
-                         connection.Open();
-                         command.ExecuteNonQuery();
-                     }
-                     catch (SqlException exception)
-                     {
-                         Response.Write("<p>Error code " + exception.Number
-                                        + ": " + exception.Message + "</p>");
-                     }
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE LOGIN " +
+                        "SET login_password=@loginPassword WHERE login_ID = @login_ID";
+                    command.Parameters.AddWithValue("@loginPassword", schoolDirectorPassword);
+                    command.Parameters.AddWithValue("@login_ID", schoolDirectorLoginID);
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException exception)
+                    {
+                        Response.Write("<p>Error code " + exception.Number
+                                       + ": " + exception.Message + "</p>");
+                    }
 
-                 }
-             }
-
-
-             using (SqlConnection connection = new SqlConnection(connectionString))
-             {
-                 using (SqlCommand command = connection.CreateCommand())
-                 {
-                     command.CommandText = "UPDATE User_Profile " +
-                         "SET userProfile_First_Name=@userProfile_First_Name, userProfile_Last_Name= @userProfile_Last_Name, userProfile_Email= @userProfile_Email, userProfile_Phone= @userProfile_Phone, userProfile_Street=@userProfile_Street, userProfile_City=@userProfile_City, userProfile_State=@userProfile_State, userProfile_Zip=@userProfile_Zip, "
-                         + "userProfile_Background_Description=@userProfile_Background_Description WHERE userProfile_ID=@userProfile_ID";
-                     command.Parameters.AddWithValue("@userProfile_First_Name", schoolDirectorFirstName);
-                     command.Parameters.AddWithValue("@userProfile_Last_Name", schoolDirectorLastName);
-                     command.Parameters.AddWithValue("@userProfile_Email", schoolDirectorEmail);
-                     command.Parameters.AddWithValue("@userProfile_Phone", schoolDirectorPhoneNumber);
-                     command.Parameters.AddWithValue("@userProfile_Street", schoolDirectorStreetAddress);
-                     command.Parameters.AddWithValue("@userProfile_City", schoolDirectorCity);
-                     command.Parameters.AddWithValue("@userProfile_State", schoolDirectorState);
-                     command.Parameters.AddWithValue("@userProfile_Zip", schoolDirectorZipCode);
-                     command.Parameters.AddWithValue("@userProfile_Background_Description", schoolDirectorBackgroundDescription);
-                     command.Parameters.AddWithValue("@userProfile_ID", schoolDirectorUserProfileId);
-                     try
-                     {
-                         connection.Open();
-                         command.ExecuteNonQuery();
-                     }
-                     catch (SqlException exception)
-                     {
-                         Response.Write("<p>Error code " + exception.Number
-                                        + ": " + exception.Message + "</p>");
-                     }
-                 }
-             }
+                }
+            }
 
 
-             using (SqlConnection connection = new SqlConnection(connectionString))
-             {
-                 using (SqlCommand command = connection.CreateCommand())
-                 {
-                     command.CommandText = "UPDATE SCHOOL " +
-                          "SET sch_Name=@sch_Name, sch_Street= @sch_Street, sch_City= @sch_City, sch_State= @sch_State, sch_Zip=@sch_Zip "
-                          + "WHERE sch_ID=@sch_ID";
-                     command.Parameters.AddWithValue("@sch_Name", schoolName);
-                     command.Parameters.AddWithValue("@sch_Street", schoolStreetAddress);
-                     command.Parameters.AddWithValue("@sch_City", schoolCityName);
-                     command.Parameters.AddWithValue("@sch_State", schoolStateName);
-                     command.Parameters.AddWithValue("@sch_Zip", schoolZipCode);
-                     command.Parameters.AddWithValue("@sch_ID", schoolId);
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE User_Profile " +
+                        "SET userProfile_First_Name=@userProfile_First_Name, userProfile_Last_Name= @userProfile_Last_Name, userProfile_Email= @userProfile_Email, userProfile_Phone= @userProfile_Phone, userProfile_Street=@userProfile_Street, userProfile_City=@userProfile_City, userProfile_State=@userProfile_State, userProfile_Zip=@userProfile_Zip, "
+                        + "userProfile_Background_Description=@userProfile_Background_Description WHERE userProfile_ID=@userProfile_ID";
+                    command.Parameters.AddWithValue("@userProfile_First_Name", schoolDirectorFirstName);
+                    command.Parameters.AddWithValue("@userProfile_Last_Name", schoolDirectorLastName);
+                    command.Parameters.AddWithValue("@userProfile_Email", schoolDirectorEmail);
+                    command.Parameters.AddWithValue("@userProfile_Phone", schoolDirectorPhoneNumber);
+                    command.Parameters.AddWithValue("@userProfile_Street", schoolDirectorStreetAddress);
+                    command.Parameters.AddWithValue("@userProfile_City", schoolDirectorCity);
+                    command.Parameters.AddWithValue("@userProfile_State", schoolDirectorState);
+                    command.Parameters.AddWithValue("@userProfile_Zip", schoolDirectorZipCode);
+                    command.Parameters.AddWithValue("@userProfile_Background_Description", schoolDirectorBackgroundDescription);
+                    command.Parameters.AddWithValue("@userProfile_ID", schoolDirectorUserProfileId);
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException exception)
+                    {
+                        Response.Write("<p>Error code " + exception.Number
+                                       + ": " + exception.Message + "</p>");
+                    }
+                }
+            }
 
-                     try
-                     {
-                         connection.Open();
-                         command.ExecuteNonQuery();
-                     }
-                     catch (SqlException exception)
-                     {
-                         Response.Write("<p>Error code " + exception.Number
-                                        + ": " + exception.Message + "</p>");
-                     }
-                 }
-             }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE SCHOOL " +
+                         "SET sch_Name=@sch_Name, sch_Street= @sch_Street, sch_City= @sch_City, sch_State= @sch_State, sch_Zip=@sch_Zip "
+                         + "WHERE sch_ID=@sch_ID";
+                    command.Parameters.AddWithValue("@sch_Name", schoolName);
+                    command.Parameters.AddWithValue("@sch_Street", schoolStreetAddress);
+                    command.Parameters.AddWithValue("@sch_City", schoolCityName);
+                    command.Parameters.AddWithValue("@sch_State", schoolStateName);
+                    command.Parameters.AddWithValue("@sch_Zip", schoolZipCode);
+                    command.Parameters.AddWithValue("@sch_ID", schoolId);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (SqlException exception)
+                    {
+                        Response.Write("<p>Error code " + exception.Number
+                                       + ": " + exception.Message + "</p>");
+                    }
+                }
+            }
 
 
-             Page_Load(null, EventArgs.Empty);
-             directorFullNameLabelID.Text = schoolDirectorFirstName + " " + schoolDirectorLastName;
-             schoolNameLabelID.Text = schoolName;
-             schoolNameId.Text = schoolName;
+            Page_Load(null, EventArgs.Empty);
+            directorFullNameLabelID.Text = schoolDirectorFirstName + " " + schoolDirectorLastName;
+            schoolNameLabelID.Text = schoolName;
+            schoolNameId.Text = schoolName;
 
         }
 

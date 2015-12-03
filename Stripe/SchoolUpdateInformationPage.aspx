@@ -48,11 +48,11 @@
                                 <ul class="nav nav-tabs nav-justified">
                                     <%--<ul class="nav navbar-nav">--%>
                                     <li class="active">
-                                        <asp:HyperLink NavigateUrl="SchooHomePage.aspx" ID="refereeProfileHomeID" runat="server"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><b> Home</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl="SchooHomePage.aspx" ID="schoolProfileHomeID" runat="server"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><b> Home</b><span class="sr-only"></span></asp:HyperLink>
 
                                     </li>
                                     <li>
-                                        <asp:HyperLink NavigateUrl=" " ID="eventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl="SchoolDirectorEventsPage.aspx" ID="eventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
 
 
                                     </li>
@@ -62,7 +62,7 @@
 
                                     </li>
                                     <li>
-                                        <asp:HyperLink NavigateUrl=" " ID="approveAndRatingID" runat="server"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><b> Approval & Rating</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl="SchoolApprovalAndRatingPage.aspx" ID="approveAndRatingID" runat="server"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><b> Approval & Rating</b><span class="sr-only"></span></asp:HyperLink>
 
 
                                     </li>

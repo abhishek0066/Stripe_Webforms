@@ -90,136 +90,146 @@
                 
 
                 <div class="navSection">
-                    <label for="settings" class='fontawesome-cogs'>Upcoming Events</label>
-                    <label for="posts" class='fontawesome-folder-open'>Previous Events</label>
+                    <label for="settings" class='fontawesome-cogs'>Upcoming & Previous Events</label>
+                    <label for="posts" class='fontawesome-folder-open'>Register Events</label>
                     
                 </div>
 
                 <div class='uno fontawesome-umbrella article'>
                
-                    <div class="col-xs-0 col-sm-0 col-md-4 col-lg-4">
-                        <div class="panel">
-                            <table class="table table-hover">
-                                <tbody>
-                                    <tr class=" addcolor1">
-                                        <td class="text-center">
-                                            <asp:Label ID="Label2" runat="server" Text="HOME"></asp:Label>
-                                        </td>
+                    <div class="row">  
+                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+                         <div class="col-xs-1 col-sm-1 col-md-9 col-lg-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><center><b><p style="font-size:25px !important;font-weight:750">PREVIOUS EVENT LIST</p></b></center></div>
+                               <div class="panel-body">
 
-                                        <td></td>
-                                        <td class="text-center">
-                                            <asp:Label ID="Label1" runat="server" Text="AWAY"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr class=" addcolor3">
-                                        <td class="text-center">
-                                            <img src="Images/stormTrooper.jpg" id="homeSchoolImageID" />
-                                        </td>
-
-                                        <td>
-                                            <h2 class="googleFont" style="color: black">VS</h2>
-                                        </td>
-                                        <td class="text-center">
-                                            <img src="Images/stormTrooper.jpg" id="awaySchoolImageID" />
-                                        </td>
-                                    </tr>
-                                    <tr class=" addcolor2">
-                                        <td class="text-center">
-                                            <asp:Label ID="homeSchoolNameID" runat="server" Text="Home School Name"></asp:Label>
-                                        </td>
-
-                                        <td></td>
-                                        <td class="text-center">
-                                            <asp:Label ID="awaySchoolNameID" runat="server" Text="Away School Name"></asp:Label>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                  <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringLocalDB %>" SelectCommand=""></asp:SqlDataSource>
+                                   <asp:DataGrid ID="DataGrid1" runat="server" DataSourceID="SqlDataSource1" CssClass="table table-hover table-striped " Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False">
+                                           
+                                            <HeaderStyle Font-Bold="True" Font-Italic="False" Font-Overline="False" Font-Size="Medium" Font-Strikeout="False" Font-Underline="False" />
+                                        </asp:DataGrid>
+                               </div>         
                     </div>
-                    <div class="col-xs-0 col-sm-0 col-md-2 col-lg-2">
-                        <div class="panel">
-                            <table class="table table-hover">
-                                <tbody>
-                                    <tr class=" addcolor1">
-                                        <td class="text-center">
-                                            <asp:Label ID="eventDateLabelID" runat="server" Text="Date"></asp:Label>
-                                        </td>
+                             </div>
+                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    </div> 
+                </div>
+                 
+                    <div class="row">  
+                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+                         <div class="col-xs-1 col-sm-1 col-md-9 col-lg-9">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><center><b><p style="font-size:25px !important;font-weight:750">UPCOMING EVENT LIST</p></b></center></div>
+                               <div class="panel-body">
 
-                                        
-                                        <td class="text-center">
-                                            <asp:Label ID="eventTimeLabelID" runat="server" Text="Time"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr class=" addcolor3">
-                                        <td class="text-center">
-                                            <asp:Label ID="sportEventTypeID" runat="server" Text="Sport Type"></asp:Label>
-                                        </td>
-
-                                        <td class="text-center">
-                                            <img src="Images/stormTrooper.jpg" id="sportTypeImageID" />
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr class=" addcolor2">
-                                        <td class="text-center">
-                                            <asp:Label ID="gameLocationID" runat="server" Text="Location"></asp:Label>
-                                        </td>
-
-                                        
-                                        <td class="text-center">
-                                            <asp:Label ID="gameLocationFieldNameID" runat="server" Text="Field Name"></asp:Label>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                  <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringLocalDB %>" SelectCommand=""></asp:SqlDataSource>
+                                   <asp:DataGrid ID="DataGrid2" runat="server" DataSourceID="SqlDataSource2" CssClass="table table-hover table-striped " Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False">
+                                           
+                                            <HeaderStyle Font-Bold="True" Font-Italic="False" Font-Overline="False" Font-Size="Medium" Font-Strikeout="False" Font-Underline="False" />
+                                        </asp:DataGrid>
+                               </div>         
                     </div>
-                    <div class="col-xs-0 col-sm-0 col-md-4 col-lg-4">
-                        <div class="panel">
-                        <table class="table table-hover">
-                                <tbody>
-                                    <tr class=" addcolor1">
-                                        <td class="text-center">
-                                            <asp:Label ID="refereeType1ID" runat="server" Text="Referee Type 1"></asp:Label>
-                                        </td>
-
-                                        <td class="text-center">
-                                            <asp:Label ID="refereeType2ID" runat="server" Text="Referee Type 2"></asp:Label>
-                                        </td>
-                                        <td class="text-center">
-                                            <asp:Label ID="refereeType3ID" runat="server" Text="Referee Type 3"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr class=" addcolor3">
-                                        <td class="text-center">
-                                            <img src="Images/stormTrooper.jpg" id="refereeType1ImageID" />
-                                        </td>
-
-                                        <td class="text-center">
-                                            <img src="Images/stormTrooper.jpg" id="refereeType2ImageID" />
-                                        </td>
-                                        <td class="text-center">
-                                            <img src="Images/stormTrooper.jpg" id="refereeType3ImageID" />
-                                        </td>
-                                    </tr>
-                                    <tr class=" addcolor2">
-                                        <td class="text-center">
-                                            <asp:Label ID="refereeName1ID" runat="server" Text="Referee Name 1"></asp:Label>
-                                        </td>
-
-                                        <td class="text-center">
-                                            <asp:Label ID="refereeName2ID" runat="server" Text="Referee Name 2"></asp:Label>
-                                        </td>
-                                        <td class="text-center">
-                                            <asp:Label ID="refereeName3ID" runat="server" Text="Referee Name 3"></asp:Label>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </div>
-                    </div>
+                             </div>
+                         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    </div> 
+                </div>
+                   
+                    
                   
+                </div>
+                <div class="dos fontawesome-umbrella article">
+                    <div class="">
+                        <div class="row">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+                        <div class="col-xs-1 col-sm-1 col-md-8 col-lg-8">
+                            <div class="panel">
+                                <div class="panel-heading addcolor1">
+                                    <h3 class="panel-title text-center">Event Location and Time Information</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-hover class_selector">
+                                        <tbody>
+                                            <tr>
+                                                    <td class="text-center-2">Home School Name</td>
+                                                    <td class="text-center-2">
+                                                        
+                                                        <asp:Label ID="homeSchoolNameLabelID" runat="server" Text="Home School"></asp:Label></td>
+                                                       
+                                            </tr>
+                                            <tr>
+                                                    <td class="text-center-2">Away School Name</td>
+                                                    <td class="text-center-2">
+                                                        
+                                                        <asp:Label ID="awaySchoolNameLabelID" runat="server" Text="Away School"></asp:Label></td>
+                                                       
+                                            </tr>
+                                            <tr>
+                                                    <td class="text-center-2">Event Date</td>
+                                                    <td class="text-center-2">
+                                                        
+                                                        <asp:Label ID="EventDateLabelID" runat="server" Text="Event Date"></asp:Label></td>
+                                                       
+                                            </tr>
+                                            <tr>
+                                                    <td class="text-center-2">Event Time</td>
+                                                    <td class="text-center-2">
+                                                        <asp:Label ID="EventTimeLabelID" runat="server" Text="Event Time"></asp:Label></td>
+                                                   
+                                            </tr>
+                                            <tr>
+                                                    <td class="text-center-2">Event Location</td>
+                                                    <td class="text-center-2">
+                                                        <asp:Label ID="EventLocationID" runat="server" Text="Event Location"></asp:Label></td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+                        <div class="col-xs-1 col-sm-1 col-md-3 col-lg-3">
+                             <div class="panel">
+                                 <div class="panel-heading addcolor1">
+                                    <h3 class="panel-title text-center">Game Position</h3>
+                                </div>
+                                <div class="panel-body gamePositionRefereeType">
+                                    <asp:DropDownList class="form-control" ID="GamePositionTypeSelectionValue" runat="server"></asp:DropDownList>    
+                                </div>
+                             </div>
+                        </div>
+                        <div class="col-xs-1 col-sm-1 col-md-5 col-lg-5">
+                            <div class="panel">
+                                 <div class="panel-heading addcolor1">
+                                    <h3 class="panel-title text-center">Apply/ Reject</h3>
+                                </div>
+                                <div class="panel-body">
+                                   <table  class="table table-hover class_selector">
+                                       <tbody>
+                                           <tr>
+                                               <td class="text-center">
+                                                   <asp:LinkButton ID="updateUserProfileID" runat="server" CssClass="btn btn-success btn-lg" OnClick="registerEvent_Click">
+                                                        <i aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></i> Register</asp:LinkButton>
+                    
+                                               </td>
+                                           </tr>
+                                           <tr>
+                                               <td class="text-center">
+                                                   <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-danger btn-lg">
+                                                        <i aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></i> Decline</asp:LinkButton>
+                                               </td>
+                                           </tr>
+                                       </tbody>
+                                   </table>
+                                </div>
+                             </div>
+                        </div>
+                         <div class="col-xs-1 col-sm-1 col-md-3 col-lg-3"></div>
+                    </div>
+
                 </div>
                     </div>
 

@@ -14,7 +14,7 @@ namespace Stripe
     public partial class SchoolApprovalAndRatingPage : System.Web.UI.Page
     {
         int schoolDirectorUserProfileId;
-        string schoolDirectorUserId = "";
+        string cookieUsername = "";
         int sportEventID;
         int refereeProfileID;
         int refereeSportType_TypeID;
@@ -68,12 +68,14 @@ namespace Stripe
         int refereeRatingTotalStarsGiven;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] != null)
+            if (Request.Cookies["user"] != null)
             {
-                schoolDirectorUserId = Session["user"].ToString();
+
+                HttpCookie getUserCookie = Request.Cookies["user"];
+                cookieUsername = getUserCookie.Values["schoolDirectorUsername"];
                 try
                 {
-                    schoolDirectorUserProfileId = Int32.Parse(schoolDirectorUserId);
+                    schoolDirectorUserProfileId = Int32.Parse(cookieUsername);
                 }
                 catch (Exception ex)
                 {
@@ -83,7 +85,8 @@ namespace Stripe
 
             else
             {
-                Response.Redirect("LoginForm.aspx", false);
+
+                Response.Redirect("About.aspx");
             }
 
             if (!Page.IsPostBack)
@@ -1905,11 +1908,8 @@ namespace Stripe
 
         }
 
-        protected void logoutout_Click(object sender, EventArgs e)
-        {
-            Session["loginid"] = null;
-            Session["user"] = null;
-            Response.Redirect("LoginForm.aspx", false);
-        }
+
+
+
     }
 }

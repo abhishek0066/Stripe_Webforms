@@ -22,22 +22,22 @@ namespace Stripe {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// schoolDirectorProfileHomeID control.
+        /// schoolProfileHomeID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink schoolDirectorProfileHomeID;
+        protected global::System.Web.UI.WebControls.HyperLink schoolProfileHomeID;
         
         /// <summary>
-        /// eventsID control.
+        /// schooleventsID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink eventsID;
+        protected global::System.Web.UI.WebControls.HyperLink schooleventsID;
         
         /// <summary>
         /// searchID control.
@@ -49,13 +49,13 @@ namespace Stripe {
         protected global::System.Web.UI.WebControls.HyperLink searchID;
         
         /// <summary>
-        /// approveAndRatingID control.
+        /// schoolapproveAndRatingID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink approveAndRatingID;
+        protected global::System.Web.UI.WebControls.HyperLink schoolapproveAndRatingID;
         
         /// <summary>
         /// logoutout control.

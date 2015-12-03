@@ -14,12 +14,25 @@ html, body {
 
 .text-center {
     text-align: center !important;
-    font-size: 10px;
+    font-size: 25px;
     font-weight: 800;
     font-family: 'Arial', serif;
     color: white;
 }
 
+.text-center-2 {
+    text-align: center !important;
+    font-size: 18px;
+    font-weight: 800;
+    font-family: 'Arial', serif;
+    color: black;
+
+}
+
+.gamePositionRefereeType {
+max-height:350px;
+min-height:180px;
+}
 
 /*VS styling*/
 .googleFont{

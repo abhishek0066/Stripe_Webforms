@@ -48,21 +48,30 @@
                                 <ul class="nav nav-tabs nav-justified">
                                     <%--<ul class="nav navbar-nav">--%>
                                     <li class="active">
-                                        <asp:HyperLink NavigateUrl="SchooHomePage.aspx" ID="schoolDirectorProfileHomeID" runat="server"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><b> Home</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl="SchooHomePage.aspx" ID="schoolProfileHomeID" runat="server"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><b> Home</b><span class="sr-only"></span></asp:HyperLink>
+
                                     </li>
                                     <li>
-                                        <asp:HyperLink NavigateUrl="SchoolDirectorEventsPage.aspx" ID="eventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl="SchoolDirectorEventsPage.aspx" ID="schooleventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
+
+
                                     </li>
                                     <li>
-                                        <asp:HyperLink NavigateUrl="#" ID="searchID" runat="server"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><b> Search</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl=" " ID="searchID" runat="server"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><b> Search</b><span class="sr-only"></span></asp:HyperLink>
+
+
                                     </li>
                                     <li>
-                                        <asp:HyperLink NavigateUrl="SchoolApprovalAndRatingPage.aspx" ID="approveAndRatingID" runat="server"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><b> Approval & Rating</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl="SchoolApprovalAndRatingPage.aspx" ID="schoolapproveAndRatingID" runat="server"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><b> Approval & Rating</b><span class="sr-only"></span></asp:HyperLink>
+
+
                                     </li>
                                     <li>
-                                        <asp:LinkButton ID="logoutout" runat="server" OnClick="logoutout_Click"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><b> Logout</b><span class="sr-only"></span></asp:LinkButton>
+                                        <asp:LinkButton ID="logoutout" runat="server"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><b> Logout</b><span class="sr-only"></span></asp:LinkButton>
+
                                     </li>
                                 </ul>
+
                             </div>
                             <%--collapse header ends--%>
                         </div>
@@ -92,11 +101,13 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title schoolInformationpicturepanel">
                                             <asp:Label ID="schoolNameLabelID" runat="server" Text="School Name"></asp:Label>
+
                                         </h3>
                                     </div>
                                     <div class="panel-body ">
                                         <center><img src="Images/2_Normal_Comm_Logo.jpg" /></center>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="col-xs-8  col-sm-8 col-md-8 col-lg-8">
@@ -131,11 +142,14 @@
                                             </tbody>
                                         </table>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
             <%--school director information div ends--%>
 
@@ -163,7 +177,9 @@
                                 </div>
                                 <div class="col-xs-4  col-sm-4 col-md-4 col-lg-4"></div>
                             </div>
+
                         </div>
+
 
                         <div class="row">
                             <div class="col-xs-1  col-sm-1 col-md-1 col-lg-1"></div>
@@ -180,6 +196,7 @@
                                                     <td class="text-center">
                                                         <asp:Label ID="emailLabelID" runat="server" Text="Email"></asp:Label></td>
                                                 </tr>
+
                                                 <tr>
                                                     <td class="text-center">Phone Number</td>
                                                     <td class="text-center">
@@ -190,6 +207,7 @@
                                                     <td class="text-center">
                                                         <asp:Label ID="directorStreetAddressLabelID" runat="server" Text="Street Address"></asp:Label></td>
                                                 </tr>
+
                                                 <tr>
                                                     <td class="text-center">City</td>
                                                     <td class="text-center">
@@ -221,20 +239,28 @@
                                             </tbody>
                                         </table>
                                     </div>
+
+
                                 </div>
+                                
                                 <div class="col-xs-1  col-sm-1 col-md-1 col-lg-1"></div>
                             </div>
+                            
                         </div>
+                        
                     </div>
-                </div>
-            </div>
+                    </div></div>
             <center>
+                             
                                 <asp:LinkButton ID="updateUserProfileID" runat="server"
                                                                 class="btn btn-success btn-lg" OnClick="updateInformationButton_Click">
                                                         <i aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></i>Update Profile
 
                                 </asp:LinkButton>
+
                                 </center>
+
+
     </form>
 </body>
 </html>

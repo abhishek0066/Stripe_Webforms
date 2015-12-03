@@ -53,7 +53,7 @@
 
                                     </li>
                                     <li>
-                                        <asp:HyperLink NavigateUrl=" " ID="eventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
+                                        <asp:HyperLink NavigateUrl="RefereeEventsPage.aspx" ID="eventsID" runat="server"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><b> Events</b><span class="sr-only"></span></asp:HyperLink>
 
 
                                     </li>

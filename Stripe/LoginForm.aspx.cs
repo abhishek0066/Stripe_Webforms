@@ -28,7 +28,7 @@ namespace Stripe
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     //fetching sport Id of the referee
-                    command.CommandText = "SELECT * FROM [dbo].[Login] " +
+                    command.CommandText = "SELECT * FROM Login " +
                                              "WHERE login_username = @username AND login_password = @password";
 
                     command.Parameters.AddWithValue("@username", username);

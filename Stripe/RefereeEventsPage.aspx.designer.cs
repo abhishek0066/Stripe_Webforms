@@ -58,138 +58,111 @@ namespace Stripe {
         protected global::System.Web.UI.WebControls.LinkButton logoutout;
         
         /// <summary>
-        /// Label2 control.
+        /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
-        /// Label1 control.
+        /// DataGrid1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.DataGrid DataGrid1;
         
         /// <summary>
-        /// homeSchoolNameID control.
+        /// SqlDataSource2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label homeSchoolNameID;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
         
         /// <summary>
-        /// awaySchoolNameID control.
+        /// DataGrid2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label awaySchoolNameID;
+        protected global::System.Web.UI.WebControls.DataGrid DataGrid2;
         
         /// <summary>
-        /// eventDateLabelID control.
+        /// homeSchoolNameLabelID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label eventDateLabelID;
+        protected global::System.Web.UI.WebControls.Label homeSchoolNameLabelID;
         
         /// <summary>
-        /// eventTimeLabelID control.
+        /// awaySchoolNameLabelID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label eventTimeLabelID;
+        protected global::System.Web.UI.WebControls.Label awaySchoolNameLabelID;
         
         /// <summary>
-        /// sportEventTypeID control.
+        /// EventDateLabelID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label sportEventTypeID;
+        protected global::System.Web.UI.WebControls.Label EventDateLabelID;
         
         /// <summary>
-        /// gameLocationID control.
+        /// EventTimeLabelID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label gameLocationID;
+        protected global::System.Web.UI.WebControls.Label EventTimeLabelID;
         
         /// <summary>
-        /// gameLocationFieldNameID control.
+        /// EventLocationID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label gameLocationFieldNameID;
+        protected global::System.Web.UI.WebControls.Label EventLocationID;
         
         /// <summary>
-        /// refereeType1ID control.
+        /// GamePositionTypeSelectionValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label refereeType1ID;
+        protected global::System.Web.UI.WebControls.DropDownList GamePositionTypeSelectionValue;
         
         /// <summary>
-        /// refereeType2ID control.
+        /// updateUserProfileID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label refereeType2ID;
+        protected global::System.Web.UI.WebControls.LinkButton updateUserProfileID;
         
         /// <summary>
-        /// refereeType3ID control.
+        /// LinkButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label refereeType3ID;
-        
-        /// <summary>
-        /// refereeName1ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label refereeName1ID;
-        
-        /// <summary>
-        /// refereeName2ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label refereeName2ID;
-        
-        /// <summary>
-        /// refereeName3ID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label refereeName3ID;
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
     }
 }
