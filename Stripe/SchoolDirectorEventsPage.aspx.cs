@@ -15,7 +15,7 @@ namespace Stripe
     public partial class SchoolDirectorEventsPage : System.Web.UI.Page
     {
         int schoolDirectorUserProfileId;
-        string cookieUsername = "";
+        string cookieUsername;
         string selectedSchoolName;
         string selectedSportName;
         int selectedSchoolID;
@@ -27,16 +27,16 @@ namespace Stripe
         string eventLocationSelected;
         int homeSchoolID;
 
+        readonly string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["user"] != null)
+            if (Session["userid"] != null)
             {
-
-                HttpCookie getUserCookie = Request.Cookies["user"];
-                cookieUsername = getUserCookie.Values["schoolDirectorUsername"];
                 try
                 {
-                    schoolDirectorUserProfileId = Int32.Parse(cookieUsername);
+                    schoolDirectorUserProfileId = Convert.ToInt32(Session["userid"]);
                 }
                 catch (Exception ex)
                 {
@@ -59,7 +59,6 @@ namespace Stripe
 
             if (!Page.IsPostBack)
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     using (SqlCommand command = connection.CreateCommand())
@@ -128,7 +127,6 @@ namespace Stripe
             eventTimeSelected_Time = Convert.ToDateTime(eventTimeSelected);
             eventLocationSelected = eventLocationFieldID.Text;
 
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
@@ -217,6 +215,7 @@ namespace Stripe
                                 + " ('n', @event_Date, @event_Time, 0, 0, "
                                 + " @event_School_Field_Name, @School_Home_sch_ID, "
                                 + " @School_Away_sch_ID, @Sport_Name_spt_Sport_Name_ID)";
+
                     command.Parameters.AddWithValue("@event_Date", eventDateSelected_Date);
                     command.Parameters.AddWithValue("@event_Time", eventTimeSelected_Time);
                     command.Parameters.AddWithValue("@event_School_Field_Name", eventLocationSelected);
@@ -242,12 +241,13 @@ namespace Stripe
 
             SqlDataSource2.SelectCommand = "SELECT SE.event_Date AS EVENT_DATE, SE.event_Time AS EVENT_TIME, SE.event_Home_Team_Score AS HOME_TEAM_SCORE, SE.event_Away_Team_Score AS AWAY_TEAM_SCORE, SE.event_School_Field_Name AS FIELD_NAME FROM Sport_Event SE JOIN SCHOOL SCH ON SE.School_Home_sch_ID= SCH.sch_ID WHERE SCH.User_Profile_Director_Profile_ID= " + schoolDirectorUserProfileId + " AND SE.event_Date>=SYSDATETIME()";
 
-
-
-
-
         }
 
-
+        protected void logoutout_Click(object sender, EventArgs e)
+        {
+            Session["loginid"] = null;
+            Session["userid"] = null;
+            Response.Redirect("LoginForm.aspx", false);
+        }
     }
 }

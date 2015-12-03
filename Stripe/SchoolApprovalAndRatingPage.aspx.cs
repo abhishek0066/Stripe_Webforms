@@ -66,16 +66,18 @@ namespace Stripe
         int refereeRatingHomeTeamScore;
         int refereeRatingAwayTeamScore;
         int refereeRatingTotalStarsGiven;
+
+        readonly string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["user"] != null)
+            if (Session["userid"] != null)
             {
 
-                HttpCookie getUserCookie = Request.Cookies["user"];
-                cookieUsername = getUserCookie.Values["schoolDirectorUsername"];
                 try
                 {
-                    schoolDirectorUserProfileId = Int32.Parse(cookieUsername);
+                    schoolDirectorUserProfileId = Int32.Parse(Session["userid"].ToString());
                 }
                 catch (Exception ex)
                 {
@@ -86,12 +88,11 @@ namespace Stripe
             else
             {
 
-                Response.Redirect("About.aspx");
+                Response.Redirect("LoginForm.aspx", false);
             }
 
             if (!Page.IsPostBack)
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     using (SqlCommand command = connection.CreateCommand())
@@ -651,8 +652,6 @@ namespace Stripe
         {
             char refereeApprovalStatus = 'A';
 
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
@@ -1130,8 +1129,6 @@ namespace Stripe
         protected void rejectReferee_Click(object sender, EventArgs e)
         {
             char refereeRejectionStatus = 'D';
-
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = connection.CreateCommand())
@@ -1586,7 +1583,6 @@ namespace Stripe
         protected void refereeRatingButton_OnClick(object sender, EventArgs e)
         {
             refereeRatingTotalStarsGiven = Int32.Parse(RefereeRatingValue.SelectedValue);
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringLocalDB"].ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -1902,14 +1898,13 @@ namespace Stripe
             refereeRatingRefereeTypeLabelID.Text = refereeRatingSportType_TypeName;
             refereeRatingRefereeNameLabelID.Text = refereeRatingRefereeFirstName + " " + refereeRatingRefereeLastName;
 
-
-
-
-
         }
 
-
-
-
+        protected void logoutout_Click(object sender, EventArgs e)
+        {
+            Session["loginid"] = null;
+            Session["userid"] = null;
+            Response.Redirect("LoginForm.aspx", false);
+        }
     }
 }

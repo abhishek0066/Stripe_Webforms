@@ -67,7 +67,7 @@
 
                                     </li>
                                     <li>
-                                        <asp:LinkButton ID="logoutout" runat="server"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><b> Logout</b><span class="sr-only"></span></asp:LinkButton>
+                                        <asp:LinkButton ID="logoutout" runat="server" OnClick="logoutout_Click"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><b> Logout</b><span class="sr-only"></span></asp:LinkButton>
 
                                     </li>
                                 </ul>

@@ -43,14 +43,11 @@ namespace Stripe
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["user"] != null)
+            if (Session["userid"] != null)
             {
-
-                HttpCookie getUserCookie = Request.Cookies["user"];
-                cookieUsername = getUserCookie.Values["schoolDirectorUsername"];
                 try
                 {
-                    schoolDirectorUserProfileId = Int32.Parse(cookieUsername);
+                    schoolDirectorUserProfileId = Int32.Parse(Session["userid"].ToString());
                 }
                 catch (Exception ex)
                 {
@@ -61,7 +58,7 @@ namespace Stripe
             else
             {
 
-                Response.Redirect("About.aspx");
+                Response.Redirect("LoginForm.aspx", false);
             }
 
             if (!Page.IsPostBack)
@@ -318,6 +315,13 @@ namespace Stripe
             schoolNameLabelID.Text = schoolName;
             schoolNameId.Text = schoolName;
 
+        }
+
+        protected void logoutout_Click(object sender, EventArgs e)
+        {
+            Session["loginid"] = null;
+            Session["userid"] = null;
+            Response.Redirect("LoginForm.aspx", false);
         }
 
 
